@@ -20,18 +20,21 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiSchoolLine } from "react-icons/ri";
 import { RxCalendar } from "react-icons/rx";
-
-
-
-
+import { useSession } from "next-auth/react";
+import { RiAdminLine } from "react-icons/ri";
 
 
 
 const Navbar = () => {
 
+    //session
+    const { status } = useSession();
+
+    // Theme Handeling
     const { systemTheme, theme, setTheme } = useTheme();
     const themeHandler = () => theme == "dark"? setTheme('light'): setTheme("dark")
 
+    // Menue flag
     const [ hamMenue , setHamMenue ] = useState( false )
     const menueHandler = () => setHamMenue( !hamMenue )
 
@@ -53,6 +56,7 @@ const Navbar = () => {
                         hamMenue ? <nav className="flex w-full " >
                                     <div className="bg-background-light-2 rounded-bl-2xl dark:bg-background-dark-2 animate-scale-up-ver-top px-9  py-6 " >
                                         <ul className=" flex flex-col mb-3 divide-y dark:divide-background-dark-5 lg:px-3  divide-gray-300 ">
+                                            { status == "authenticated"  ? <li><Link href="/admin-panel" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-green-3"><RiAdminLine/></span>پنل ادمین</Link></li> : null }
                                             <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><FiBookOpen/></span>زیارت نامه ها</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><IoNewspaperOutline /></span>مقاله ها</Link></li>
