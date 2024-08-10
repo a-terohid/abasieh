@@ -20,6 +20,9 @@ export const POST= async ( req : Request ) => {
             )
         }
 
+        console.log("tttt");
+        
+
         const existUser = await USER.findOne({ email })
         if( existUser ){
             return NextResponse.json(

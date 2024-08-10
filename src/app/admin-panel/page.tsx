@@ -1,7 +1,7 @@
 import connectDB from "@/utils/connectDB";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "src/components/lib/auth";
 
 
 const page = async () => {

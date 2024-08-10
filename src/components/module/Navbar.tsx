@@ -22,6 +22,7 @@ import { RiSchoolLine } from "react-icons/ri";
 import { RxCalendar } from "react-icons/rx";
 import { useSession } from "next-auth/react";
 import { RiAdminLine } from "react-icons/ri";
+import { AiOutlineHome } from "react-icons/ai";
 
 
 
@@ -43,30 +44,31 @@ const Navbar = () => {
             <nav className="bg-background-light-2 dark:bg-background-dark-2 py-4 lg:py-6" >
                 <div className="flex justify-between items-center container">
                     <div className="flex items-center gap-x-4" >
-                        <span onClick={ menueHandler } className="text-2xl lg:text-3xl text-primary-red-2" >{ hamMenue ? <RxCross2 /> : <RxHamburgerMenu /> }</span>
-                        <h1 className="text-lg lg:text-xl font-bold">هیئت سقایی عباسیه جولان</h1>
+                        <span onClick={ menueHandler } className="text-2xl lg:text-3xl  cursor-pointer hover:text-primary-red-3 text-primary-red-2" >{ hamMenue ? <RxCross2 /> : <RxHamburgerMenu /> }</span>
+                        <Link href="/" className="text-lg lg:text-xl font-bold cursor-pointer">هیئت سقایی عباسیه جولان</Link>
                     </div>
                     <div className="flex items-center gap-x-3 text-xl lg:text-2xl text-primary-red-2">
-                        <span className=" hover:cursor-pointer"><FiSearch /></span>
-                        <span className=" hover:cursor-pointer" onClick={ themeHandler }>{theme === "light" ? <BsSun /> : <HiMoon className="" />}</span>
+                        <span className=" hover:cursor-pointer hover:text-3xl hover:text-primary-red-3"><FiSearch /></span>
+                        <span className=" hover:cursor-pointer  hover:text-3xl hover:text-primary-red-3" onClick={ themeHandler }>{theme === "light" ? <BsSun /> : <HiMoon className="" />}</span>
                     </div>
                 </div>
             </nav>
             {
                         hamMenue ? <nav className="flex w-full " >
-                                    <div className="bg-background-light-2 rounded-bl-2xl dark:bg-background-dark-2 animate-scale-up-ver-top px-9  py-6 " >
-                                        <ul className=" flex flex-col mb-3 divide-y dark:divide-background-dark-5 lg:px-3  divide-gray-300 ">
-                                            { status == "authenticated"  ? <li><Link href="/admin-panel" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-green-3"><RiAdminLine/></span>پنل ادمین</Link></li> : null }
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><FiBookOpen/></span>زیارت نامه ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><IoNewspaperOutline /></span>مقاله ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><PiImages /></span>گالری تصاویر</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><TbMoneybag /></span>کمک به هیئت</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><HiOutlineUserGroup /></span>پیر غلامان</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><RiSchoolLine /></span>مراسم ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><RxCalendar /></span>جلسه های هفتگی</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><FaPeopleGroup /></span>هیئت امنا</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 text-lg py-2"><span className="text-primary-red-2"><MdOutlineCall /></span>ارتباط با ما</Link></li>
+                                    <div className="bg-background-light-2 rounded-bl-2xl dark:bg-background-dark-2 animate-scale-up-ver-top px-9  py-6 shadow-xl " >
+                                        <ul onClick={ menueHandler } className=" flex flex-col mb-3 divide-y dark:divide-background-dark-5 lg:px-3  divide-gray-300 ">
+                                            { status == "authenticated"  ? <li><Link href="/admin-panel" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-green-3"><RiAdminLine/></span>پنل ادمین</Link></li> : null }
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><AiOutlineHome /></span>خانه</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FiBookOpen/></span>زیارت نامه ها</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><IoNewspaperOutline /></span>مقاله ها</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><PiImages /></span>گالری تصاویر</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><TbMoneybag /></span>کمک به هیئت</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><HiOutlineUserGroup /></span>پیر غلامان</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RiSchoolLine /></span>مراسم ها</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RxCalendar /></span>جلسه های هفتگی</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FaPeopleGroup /></span>هیئت امنا</Link></li>
+                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><MdOutlineCall /></span>ارتباط با ما</Link></li>
                                         </ul>
                                     </div>
                         </nav> : null

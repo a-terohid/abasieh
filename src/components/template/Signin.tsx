@@ -3,7 +3,6 @@
 import Input from "@/module/Input";
 import Loader from "@/module/Loader";
 import { AuthType } from "@/types/types";
-import Link from "next/link";
 import { useRouter } from 'next/navigation'
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
@@ -14,7 +13,7 @@ type s = {
     status?: number
     ok?: boolean
     url?: string | null
-  }
+}
 
 const Signin =() => {
 

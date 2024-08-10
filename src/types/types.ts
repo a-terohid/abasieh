@@ -11,7 +11,6 @@ export type AuthType = {
     password : string,
 }
 
-
 export type InputType = {
     value : string,
     label : string,
@@ -19,4 +18,25 @@ export type InputType = {
     type : string,
     name : string,
     textarea: boolean;
+}
+
+export interface Ziartnameh {
+    title: string,
+    description : string
+    text : Ziartnameh_text
+}
+
+export type Ziartnameh_text_part = {
+    supplement ?: string
+    original: string,
+    translation: string
+}
+
+export type Ziartnameh_text = Ziartnameh_text_part[]
+
+
+export type adminLayoutProps ={
+    children: React.ReactNode
+    role: ROLE,
+    email: string,
 }
