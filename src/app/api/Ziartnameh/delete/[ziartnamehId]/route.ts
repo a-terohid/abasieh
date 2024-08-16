@@ -33,21 +33,21 @@ export const DELETE = async ( req : Request, context : any ) => {
 
         const ziartnameh = await Ziartnameh.findOne({ _id : id })
 
-            if( !ziartnameh ){
-                return NextResponse.json(
-                    { error: ERROR.CANT_FIND_ZIARTNAMEH },
-                    { status: 404 }
-                );
-            }
-
-
-            await ziartnameh.deleteOne({ _id: id });
-
-
+        if( !ziartnameh ){
             return NextResponse.json(
-                { message: MESSAGE.ZIARTNAMEH_DELETE },
-                { status: 200 }
-              );
+                { error: ERROR.CANT_FIND_ZIARTNAMEH },
+                { status: 404 }
+            );
+        }
+
+
+        await ziartnameh.deleteOne({ _id: id });
+
+
+        return NextResponse.json(
+            { message: MESSAGE.ZIARTNAMEH_DELETE },
+            { status: 200 }
+            );
 
     } catch( err ){
         console.log(err);

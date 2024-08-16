@@ -22,8 +22,9 @@ export enum ERROR {
 }
 
 export enum MESSAGE {
-    NEW_ADMIN = "lndv با موفقیت ایجاد شد!",
+    NEW_ADMIN = "مدیر با موفقیت ایجاد شد!",
     ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
     NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
-    ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!"
+    ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",
+    ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!"
 }
