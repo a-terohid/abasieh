@@ -20,8 +20,6 @@ export const POST= async ( req : Request ) => {
             )
         }
 
-        console.log("tttt");
-        
 
         const existUser = await USER.findOne({ email })
         if( existUser ){
@@ -42,7 +40,7 @@ export const POST= async ( req : Request ) => {
     
 
         return NextResponse.json(
-            { message : MESSAGE.NEW_USER },
+            { message : MESSAGE.NEW_ADMIN },
             { status : 201 },
         )
         

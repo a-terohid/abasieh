@@ -43,7 +43,7 @@ export const DELETE = async ( req : Request, context : any ) => {
 
 
             return NextResponse.json(
-                { message: MESSAGE.AD_DELETE },
+                { message: MESSAGE.ADMIN_DELETE },
                 { status: 200 }
               );
 

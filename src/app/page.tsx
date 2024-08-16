@@ -1,8 +1,9 @@
+import Image from 'next/image'
 
 const page = () => {
     return (
         <div>
-            home page
+            homem page 
         </div>
     );
 };

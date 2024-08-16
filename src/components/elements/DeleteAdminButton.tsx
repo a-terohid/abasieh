@@ -21,7 +21,7 @@ const DeleteAdminButton = ({ _id }:any) => {
           toast.error(result.error);
         } else {
           toast.success(result.message);
-          router.push( "/admin-panel/admins" );
+          router.refresh();
         }
       }; 
     

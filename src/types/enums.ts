@@ -5,23 +5,23 @@ export enum ROLE  {
 
 
 export enum ERROR {
-    SERVER_ERROR = "There is error in server!",
-    USER_EXIST = "This user already exists!",
-    CANT_FIND_USER = "This user cannot be found!",
-    CANT_FIND_ADMIN = "This admin cannot be found!",
-    INVALID_DATA = "please enter a valid data!",
-    REPEAT_PASSWORD = "The password and its repetition are not equal!",
-    CREATE_ACCOUNT = "Please create an account first!",
-    WRONG_PASSWORD = "Email or password is incorrect!",
-    PROBLEM = "There is a Problem!",
-    LOGIN = "Please login to your account!",
-    NO_ADS = "No advertisement have been registered!",
-    NO_USER = "There is no user!",
-    AD_ACCESS = "Your access is limited to this action!",
-    ACCESS_DENIED = "access denied!",
+    SERVER_ERROR = "خطایی در سرور رخ داده است!",
+    USER_EXIST = "این ادمین قبلاً وجود دارد!",
+    CANT_FIND_USER = "این کاربر یافت نشد!",
+    CANT_FIND_ADMIN = "این مدیر یافت نشد!",
+    INVALID_DATA = "لطفاً داده‌های معتبر وارد کنید!",
+    REPEAT_PASSWORD = "رمز عبور و تکرار آن یکسان نیستند!",
+    CREATE_ACCOUNT = "لطفاً ابتدا یک حساب کاربری ایجاد کنید!",
+    WRONG_PASSWORD = "ایمیل یا رمز عبور نادرست است!",
+    PROBLEM = "مشکلی وجود دارد!",
+    LOGIN = "لطفاً وارد حساب کاربری خود شوید!",
+    NO_ADMIN = "هیچ مدیری وجود ندارد!",
+    AD_ACCESS = "دسترسی شما به این عمل محدود شده است!",
+    ACCESS_DENIED = "دسترسی رد شد!",
 }
 
 export enum MESSAGE {
-    NEW_USER = "user cteated successfully!",
-    AD_DELETE = "Admin deleted successfully!",
+    NEW_ADMIN = "lndv با موفقیت ایجاد شد!",
+    ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
+    NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!"
 }

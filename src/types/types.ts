@@ -21,15 +21,16 @@ export type InputType = {
 }
 
 export interface Ziartnameh {
-    title: string,
-    description : string
-    text : Ziartnameh_text
+    Title: string,
+    Description : string,
+    Text : Ziartnameh_text,
+    Voice?: string | null
 }
 
 export type Ziartnameh_text_part = {
-    supplement ?: string
-    original: string,
-    translation: string
+    Supplement ?: string
+    Original: string
+    Translation: string
 }
 
 export type Ziartnameh_text = Ziartnameh_text_part[]
