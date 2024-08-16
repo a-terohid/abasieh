@@ -9,6 +9,7 @@ export enum ERROR {
     USER_EXIST = "این ادمین قبلاً وجود دارد!",
     CANT_FIND_USER = "این کاربر یافت نشد!",
     CANT_FIND_ADMIN = "این مدیر یافت نشد!",
+    CANT_FIND_ZIARTNAMEH = "این زیارت نامه یافت نشد!",
     INVALID_DATA = "لطفاً داده‌های معتبر وارد کنید!",
     REPEAT_PASSWORD = "رمز عبور و تکرار آن یکسان نیستند!",
     CREATE_ACCOUNT = "لطفاً ابتدا یک حساب کاربری ایجاد کنید!",
@@ -23,5 +24,6 @@ export enum ERROR {
 export enum MESSAGE {
     NEW_ADMIN = "lndv با موفقیت ایجاد شد!",
     ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
-    NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!"
+    NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
+    ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!"
 }
