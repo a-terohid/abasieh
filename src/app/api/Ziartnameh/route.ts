@@ -151,7 +151,8 @@ export const PATCH= async ( req : Request ) => {
         }
 
         if( !Title ||
-            !Description)
+            !Description || 
+            !Text)
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },

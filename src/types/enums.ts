@@ -31,5 +31,6 @@ export enum MESSAGE {
     ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",
     ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!",
     NEW_YEARS = "سال جدید ساخته شد!",
-    YEAR_DELETED = "سال با موفقیت خذف شد!"
+    YEAR_DELETED = "سال با موفقیت خذف شد!",
+    NEW_ZEKR = "ذکر با موفقیت اضافه شد"
 }

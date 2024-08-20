@@ -7,7 +7,7 @@ const Zekr_Text_Paragraph_Schema = new Schema<Zekr_Text_Paragraph>({
         required: true,
         default: ""
     },
-    Zekr_text: {
+    Zekr_text_p: {
         type: [String],
         required: true,
         default: []
@@ -42,9 +42,9 @@ const ZekrSchema = new Schema<Zekr>({
         default: ""
     },
     Year: {
-        type: Number,
+        type: String,
         required: true,
-        default: 0
+        default: ""
     },
     Voice: {
         type: String,
@@ -57,6 +57,6 @@ const ZekrSchema = new Schema<Zekr>({
     }
 }, { collection: "Zekr" });
 
-const ZekrModel = models.Zekr || model("Zekr", ZekrSchema);
+const Zekr = models.Zekr || model("Zekr", ZekrSchema);
 
-export default ZekrModel;
+export default Zekr;

@@ -47,7 +47,7 @@ export interface Zekr {
     Title: string,
     Zekr_Text: Zekr_Text,
     Author : string,
-    Year : number,
+    Year : string,
     Voice?: string | null
 }
 
@@ -58,7 +58,7 @@ export type Zekr_Text = {
 
 export type Zekr_Text_Paragraph = {
     Description : string,
-    Zekr_text :  String[],
+    Zekr_text_p :  String[],
     hadith : string,
 }
 
