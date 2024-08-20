@@ -171,7 +171,6 @@ export const PATCH= async ( req : Request ) => {
         }
 
         const last_voice = ziartnameh.Voice
-        console.log("salam :" ,last_voice);
         
 
         // upload Voice of ziartnameh id its is existing
