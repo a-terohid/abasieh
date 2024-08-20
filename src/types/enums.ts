@@ -11,6 +11,7 @@ export enum ERROR {
     CANT_FIND_ADMIN = "این مدیر یافت نشد!",
     CANT_FIND_ZIARTNAMEH = "این زیارت نامه یافت نشد!",
     INVALID_DATA = "لطفاً داده‌های معتبر وارد کنید!",
+    INVALID_YEAR = "همچین سالی وجود ندارد!",
     REPEAT_PASSWORD = "رمز عبور و تکرار آن یکسان نیستند!",
     CREATE_ACCOUNT = "لطفاً ابتدا یک حساب کاربری ایجاد کنید!",
     WRONG_PASSWORD = "ایمیل یا رمز عبور نادرست است!",
@@ -29,5 +30,6 @@ export enum MESSAGE {
     NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
     ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",
     ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!",
-    NEW_YEARS = "سال جدید ساخته شد!"
+    NEW_YEARS = "سال جدید ساخته شد!",
+    YEAR_DELETED = "سال با موفقیت خذف شد!"
 }
