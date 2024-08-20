@@ -8,6 +8,7 @@ import { authOptions } from "src/components/lib/auth";
 import mime from "mime";
 import { join } from "path";
 import { stat, mkdir, writeFile } from "fs/promises";
+import { unlinkSync } from "fs";
 
 export const POST= async ( req : Request ) => {
     try {
@@ -150,9 +151,7 @@ export const PATCH= async ( req : Request ) => {
         }
 
         if( !Title ||
-            !Description ||
-            !Text ||
-            !id )
+            !Description)
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },
@@ -160,17 +159,34 @@ export const PATCH= async ( req : Request ) => {
                 )
             }
 
+        const ziartnameh = await Ziartnameh.findOne({ _id : id })
+
+
+        if( !ziartnameh ){
+            return NextResponse.json(
+                { error: ERROR.CANT_FIND_ZIARTNAMEH },
+                { status: 404 }
+            );
+        }
+
+        const last_voice = ziartnameh.Voice
+        console.log("salam :" ,last_voice);
+        
+
         // upload Voice of ziartnameh id its is existing
         if( Voice ) { 
+            
             
             //Create buffer for voice
             const mimeType = Voice.type;
             const buffer = Buffer.from(await Voice.arrayBuffer());
-
+            
             // create upload path
             const relativeUploadDir = `/uploads/voices/`;
             const uploadDir = join(process.cwd(), "public", relativeUploadDir);
-    
+            
+            unlinkSync(`${uploadDir}${last_voice}`)
+
             try {
 
                 await stat(uploadDir);
@@ -201,22 +217,10 @@ export const PATCH= async ( req : Request ) => {
         }
     
 
-        const ziartnameh = await Ziartnameh.findOne({ _id : id })
-
-        console.log(ziartnameh);
-        
-
-        if( !ziartnameh ){
-            return NextResponse.json(
-                { error: ERROR.CANT_FIND_ZIARTNAMEH },
-                { status: 404 }
-            );
-        }
-
         ziartnameh.Title = Title;
         ziartnameh.Description = Description;
         ziartnameh.Text = Text;
-        ziartnameh.Voice = Voice;
+        ziartnameh.Voice = fileName;
 
         ziartnameh.save();
 

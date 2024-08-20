@@ -69,7 +69,7 @@ const AddAdminPage = () => {
     return (
         <div className='py-4 px-5'>
             <div>
-                <h1 className="font-bold text-xl" >افزودن ادمین</h1>
+                <h1 className="font-bold text-xl" >افزودن مدیر</h1>
             </div>
             <form className="flex flex-col gap-y-6 mt-5 " >
                     <Input 

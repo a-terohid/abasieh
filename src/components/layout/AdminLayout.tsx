@@ -26,12 +26,8 @@ const AdminLayout = async ({ children , role , email }: adminLayoutProps ) => {
                     { role == ROLE.ADMIN ? <p className=' px-2 font-bold bg-[#88d4ab] text-[#14746f] rounded-md'>admin</p> : null }
                     { role == ROLE.OWNER ? <p className=' px-2 font-bold bg-secondary-red-4 text-secondary-red-2 rounded-md' >owner</p> : null }
                 </div>
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >ادمین ها</Link> : null }
+                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >مدیر ها</Link> : null }
+                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ziartnameh" >زیارت‌ نامه ها</Link>
             </div>
             <div className='w-full rounded-xl shadow-xl bg-background-light-2 dark:bg-background-dark-5' >{ children }</div>
         </div>

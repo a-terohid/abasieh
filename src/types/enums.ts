@@ -17,8 +17,10 @@ export enum ERROR {
     PROBLEM = "مشکلی وجود دارد!",
     LOGIN = "لطفاً وارد حساب کاربری خود شوید!",
     NO_ADMIN = "هیچ مدیری وجود ندارد!",
+    NO_ZIARTNAMEH = "هیچ زیارت نامه وجود ندارد!",
     AD_ACCESS = "دسترسی شما به این عمل محدود شده است!",
     ACCESS_DENIED = "دسترسی رد شد!",
+    YEAR_EXIST = "این سال قبلا اضافه شده است!",
 }
 
 export enum MESSAGE {
@@ -26,5 +28,6 @@ export enum MESSAGE {
     ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
     NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
     ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",
-    ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!"
+    ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!",
+    NEW_YEARS = "سال جدید ساخته شد!"
 }

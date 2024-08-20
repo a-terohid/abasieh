@@ -1,7 +1,7 @@
 import type { User, Ziartnameh } from '@/types/types';
 import { Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema<Ziartnameh , Schema.Types.ObjectId>({
+const ZiaratnamehSchema = new Schema<Ziartnameh , Schema.Types.ObjectId>({
     Title : {
         type: String,
         required : true,
@@ -40,6 +40,6 @@ const UserSchema = new Schema<Ziartnameh , Schema.Types.ObjectId>({
 } , { collection : "" })
 
 
-const Ziartnameh = models.Ziartnameh || model("Ziartnameh", UserSchema);
+const Ziartnameh = models.Ziartnameh || model("Ziartnameh",  ZiaratnamehSchema);
 
 export default Ziartnameh;

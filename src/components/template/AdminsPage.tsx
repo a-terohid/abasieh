@@ -8,7 +8,7 @@ const AdminsPage = ({admins}: any) => {
     return (
         <div className="py-4 px-5">
             <div className="flex justify-between items-center" >
-                <h1 className="font-bold md:text-lg" >ادمین ها:</h1>
+                <h1 className="font-bold md:text-lg" >مدیر ها:</h1>
                 <Link href="/admin-panel/admins/add" className="px-2 py-1 text-sm md:text-base bg-primary-red-2 rounded-lg cursor-pointer text-text-dark" >افزودن ادمین</Link>
             </div>
             <div className="flex flex-col gap-y-2 mt-4" >

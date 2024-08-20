@@ -41,3 +41,27 @@ export type adminLayoutProps ={
     role: ROLE,
     email: string,
 }
+
+
+export interface Zekr {
+    Title: string,
+    Zekr_Text: Zekr_Text,
+    Author : string,
+    Year : number,
+    Voice?: string | null
+}
+
+export type Zekr_Text = {
+    FirstParagraph : Zekr_Text_Paragraph,
+    SecondParagraph : Zekr_Text_Paragraph,
+}
+
+export type Zekr_Text_Paragraph = {
+    Description : string,
+    Zekr_text :  String[],
+    hadith : string,
+}
+
+export interface Save {
+    Years: String[]
+};
