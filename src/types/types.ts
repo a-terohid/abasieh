@@ -17,7 +17,14 @@ export type InputType = {
     changeHandler : Function,
     type : string,
     name : string,
-    textarea: boolean;
+    textarea: boolean,
+    Voice ?: any,
+    ResetVoice ?: Function
+}
+
+export type TextZiartnamehInput = { 
+    data : Ziartnameh,
+    setData : Function
 }
 
 export interface Ziartnameh {

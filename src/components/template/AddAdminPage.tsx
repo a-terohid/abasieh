@@ -1,20 +1,12 @@
 "use client"
 
 import { AuthType } from "@/types/types";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Input from "@/module/Input";
 import Loader from "@/module/Loader";
 import { ERROR } from "@/types/enums";
-
-type s = {
-    error?: string | undefined
-    status?: number
-    ok?: boolean
-    url?: string | null
-}
 
 const AddAdminPage = () => {
 
@@ -71,7 +63,7 @@ const AddAdminPage = () => {
             <div>
                 <h1 className="font-bold text-xl" >افزودن مدیر</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5 " >
+            <form  className="flex flex-col gap-y-6 mt-5  " >
                     <Input 
                         value={ email }
                         name= "email"

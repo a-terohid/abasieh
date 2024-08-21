@@ -24,6 +24,9 @@ export const POST= async ( req : Request ) => {
         const Voice = formData.get("Voice") as File || null;
 
         let fileName = null;
+        
+        const textArray = JSON.parse(Text || "");
+        
 
         //Check Session that is admin or owner that use API
         const session = await getServerSession( authOptions )
@@ -44,13 +47,25 @@ export const POST= async ( req : Request ) => {
 
         if( !Title ||
             !Description ||
-            !Text )
+            !textArray.length )
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },
                     { status : 422 }
                 )
             }
+
+        for (const [index, section] of textArray.entries()) {
+            const { Original, Translation } = section;
+        
+            if (!Original || !Translation) {
+                return NextResponse.json(
+                    { error: `لطفا متن عربی و ترجمه بخش ${index + 1} را به طور کامل پر کنید.` },
+                    { status: 422 }
+                );
+            }
+        }
+            
 
         // upload Voice of ziartnameh id its is existing
         if( Voice ) { 
@@ -97,7 +112,7 @@ export const POST= async ( req : Request ) => {
             const NEW_ZIARTNAMEH = await Ziartnameh.create({
                 Title,
                 Description,
-                Text,
+                Text : textArray,
                 Voice : fileName
             })
 
