@@ -5,6 +5,13 @@ import { authOptions } from 'src/components/lib/auth';
 import connectDB from '@/utils/connectDB';
 import AdminLayout from '@/layout/AdminLayout';
 import { ERROR } from '@/types/enums';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "پنل ادمین",
+    description: "دنل ادمین هییت سقایی عباشیه جولان",
+};
+
 
 const layout = async ({ children }: {children: React.ReactNode}) => {
 

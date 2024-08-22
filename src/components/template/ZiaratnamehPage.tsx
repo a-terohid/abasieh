@@ -2,6 +2,7 @@ import { ERROR } from '@/types/enums';
 import { Ziartnameh } from '@/types/types';
 import Link from 'next/link';
 import React from 'react';
+import ZiartnamehAdminCart from '../constants/ZiartnamehAdminCart';
 
 const ZiaratnamehPage = ({ziartnameha} : any) => {
     
@@ -14,7 +15,7 @@ const ZiaratnamehPage = ({ziartnameha} : any) => {
             <div className="flex flex-col gap-y-2 mt-4" >
                 {   
                     ziartnameha.length ? 
-                    ziartnameha?.map( (ziartnameh : Ziartnameh , index: number)  => (<h1 key={index}>{ziartnameh.Title}</h1>) ) 
+                    ziartnameha?.map( (ziartnameh : Ziartnameh , index: number)  => (<ZiartnamehAdminCart key={index} ziartnameh={ziartnameh}/>) ) 
                     : <p>{ERROR.NO_ZIARTNAMEH}</p>
                 }
             </div>

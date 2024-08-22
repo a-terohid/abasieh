@@ -59,14 +59,14 @@ const AddziartnamehPage = () => {
         })
 
         const resData = await res.json()
-        console.log( resData );
-
+        
         setLoading( false );
         
 
         if (resData.error) {
             toast.error(resData.error);
         } else {
+            toast.success(resData.message);
             router.push("/admin-panel/ziartnameh");
         }
     }

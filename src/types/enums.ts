@@ -23,6 +23,7 @@ export enum ERROR {
     AD_ACCESS = "دسترسی شما به این عمل محدود شده است!",
     ACCESS_DENIED = "دسترسی رد شد!",
     YEAR_EXIST = "این سال قبلا اضافه شده است!",
+    ZIARTNAMEH_DONT_EXIST = "همچین زیارت نامه ای یافت نشد!"
 }
 
 export enum MESSAGE {

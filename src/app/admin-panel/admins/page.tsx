@@ -6,6 +6,16 @@ import { getServerSession } from 'next-auth';
 import React from 'react';
 import { authOptions } from 'src/components/lib/auth';
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "پنل ادمین | مدیر ها",
+    description: "قسمت مدیر های پنل ادمین هییت سفایی عباسیه جولان",
+    keywords: "پنل ادمین, مدیر ها, هییت سفایی عباسیه جولان",
+  };
+  
+
+
 const page = async () => {
 
     await connectDB();
