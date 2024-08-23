@@ -32,6 +32,11 @@ export interface Ziartnameh {
     Description : string,
     Text : Ziartnameh_text,
     Voice?: string | null
+    _id?: string
+}
+
+export type ZiartnamehCardProps = {
+    ziartnameh: Ziartnameh;
 }
 
 export type Ziartnameh_text_part = {
