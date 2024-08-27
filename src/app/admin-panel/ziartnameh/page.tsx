@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 const page = async () => {
 
     await connectDB();
-    const session = await getServerSession( authOptions )
 
     const ziartnameha = await Ziartnameh.find()
 

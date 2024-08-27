@@ -70,13 +70,13 @@ export async function DELETE( req : Request ){
 
         const { year } = await req.json()
 
-        // const session = await getServerSession( authOptions )
-        // if ( !session ) {
-        //     return NextResponse.json(
-        //         { error: ERROR.LOGIN },
-        //         { status: 401 }
-        //     );
-        // }
+        const session = await getServerSession( authOptions )
+        if ( !session ) {
+            return NextResponse.json(
+                { error: ERROR.LOGIN },
+                { status: 401 }
+            );
+        }
 
         if( !year ) {
             return NextResponse.json(
