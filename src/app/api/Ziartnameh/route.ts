@@ -10,7 +10,7 @@ import { join } from "path";
 import { stat, mkdir, writeFile } from "fs/promises";
 import { unlinkSync } from "fs";
 
-export const POST= async ( req : Request ) => {
+export const POST = async ( req : Request ) => {
     try {
 
         //conect to database
@@ -132,12 +132,11 @@ export const POST= async ( req : Request ) => {
     }
 }
 
-export const PATCH= async ( req : Request ) => {
+export const PATCH = async ( req : Request ) => {
     try {
-
-        //conect to database
+        
         await connectDB ()
-
+        
         //Get Data
         const formData = await req.formData();
         const Title = formData.get("Title") as string || null;
@@ -145,8 +144,11 @@ export const PATCH= async ( req : Request ) => {
         const Text = formData.get("Text") as string || null;
         const Voice = formData.get("Voice") as File || null;
         const id = formData.get("id") as File || null;
-
+        
         let fileName = null;
+        
+        const textArray = JSON.parse(Text || "");
+        
 
         //Check Session that is admin or owner that use API
         const session = await getServerSession( authOptions )
@@ -166,14 +168,25 @@ export const PATCH= async ( req : Request ) => {
         }
 
         if( !Title ||
-            !Description || 
-            !Text)
+            !Description ||
+            !textArray.length )
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },
                     { status : 422 }
                 )
             }
+
+        for (const [index, section] of textArray.entries()) {
+            const { Original, Translation } = section;
+        
+            if (!Original || !Translation) {
+                return NextResponse.json(
+                    { error: `لطفا متن عربی و ترجمه بخش ${index + 1} را به طور کامل پر کنید.` },
+                    { status: 422 }
+                );
+            }
+        }
 
         const ziartnameh = await Ziartnameh.findOne({ _id : id })
 
@@ -234,7 +247,7 @@ export const PATCH= async ( req : Request ) => {
 
         ziartnameh.Title = Title;
         ziartnameh.Description = Description;
-        ziartnameh.Text = Text;
+        ziartnameh.Text = textArray;
         ziartnameh.Voice = fileName;
 
         ziartnameh.save();

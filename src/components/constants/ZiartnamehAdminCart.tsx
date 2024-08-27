@@ -2,6 +2,8 @@
 import Link from "next/link";
 import DeleteZiartnamehButton from "../elements/DeleteZiartnamehButton";
 import { FaRegEye } from "react-icons/fa";
+import { BiEdit } from "react-icons/bi";
+
 
 
 
@@ -17,6 +19,7 @@ const ZiartnamehAdminCart = ({ziartnameh}: any) => {
             </div>
             <div className="flex gap-x-2 items-center">
                 <Link className=" cursor-pointer text-primary-green-2 dark:text-primary-green-4 " href={`/admin-panel/ziartnameh/${_id}`}><FaRegEye /></Link>
+                <Link className=" cursor-pointer text-primary-green-2 dark:text-primary-green-4 " href={`/admin-panel/ziartnameh/edit/${_id}`}><BiEdit /></Link>
                 <span><DeleteZiartnamehButton _id={ _id }   /></span>
             </div>
         </div>
