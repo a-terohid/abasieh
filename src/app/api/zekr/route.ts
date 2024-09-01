@@ -16,7 +16,8 @@ export const POST= async ( req : Request ) => {
 
         //conect to database
         await connectDB ()
-
+        console.log("rrr");
+        
         //Get Data
         const formData = await req.formData();
         const Title = formData.get("Title") as string || null;
@@ -26,6 +27,9 @@ export const POST= async ( req : Request ) => {
         const Voice = formData.get("Voice") as File || null;
 
         let fileName = null;
+
+        const Zekr_TextArray = JSON.parse(Zekr_Text || "");
+        console.log(Zekr_TextArray);        
 
         const session = await getServerSession( authOptions )
         if ( !session ) {
@@ -46,7 +50,7 @@ export const POST= async ( req : Request ) => {
         if( !Title ||
             !Author ||
             !Year ||
-            !Zekr_Text )
+            !Zekr_TextArray )
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },
@@ -108,7 +112,7 @@ export const POST= async ( req : Request ) => {
                 Title,
                 Author,
                 Year,
-                Zekr_Text,
+                Zekr_Text : Zekr_TextArray,
                 Voice : fileName
             })
 
@@ -119,7 +123,7 @@ export const POST= async ( req : Request ) => {
             );
 
     } catch ( e ) {
-        console.log(e);
+        console.log("error: ", e);
         return NextResponse.json(
             { error : ERROR.SERVER_ERROR },
             { status : 500 }

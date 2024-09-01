@@ -2,7 +2,7 @@
 
 import Input from "@/module/Input";
 import { TextZiartnamehInput, Ziartnameh_text_part } from "@/types/types";
-import { useState } from "react";
+
 
 
 const ZiatnamehTextInput = ({data , setData} :TextZiartnamehInput ) => {
