@@ -98,19 +98,12 @@ const AddZekrPage = ({years}:any) => {
         formData.append("Year", Year)
 
         if (!zekrText || !zekrText.FirstParagraph.Zekr_text_p.length || !zekrText.SecondParagraph.Zekr_text_p.length) {
-            toast.error("فیلدهای ذکر نمی‌توانند خالی باشند.");
-            console.log(zekrText);
-            
+            toast.error("فیلدهای ذکر نمی‌توانند خالی باشند.");           
             return;
         }
         
         // console.log(zekrText , JSON.stringify(zekrText));
         formData.append("Zekr_Text" , JSON.stringify(zekrText ))
-
-        formData.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
-        
         if (Voice) {
             formData.append('Voice', Voice); 
         }

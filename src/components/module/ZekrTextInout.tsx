@@ -13,7 +13,6 @@ const ZekrTextInout = ({data , setData,Str}:any) => {
         const newText = [...data]; // data آرایه‌ای از رشته‌هاست
         newText[index] = value; // مقدار جدید را جایگزین مقدار قبلی در ایندکس مشخص می‌کنیم
         setData(newText); // استیت data را به‌روزرسانی می‌کنیم
-        console.log(data);
     };
 
     const deleteHandler = (index: number) => { 

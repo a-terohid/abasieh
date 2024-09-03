@@ -16,8 +16,8 @@ const page = async () => {
     await connectDB()
 
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const Years = save.Years
-    
+    const Years = save.Years.sort((a:string, b:string) => parseInt(a) - parseInt(b));
+
     return ( <Yearpage Years={Years} /> );
 };
 

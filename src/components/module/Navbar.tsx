@@ -59,7 +59,7 @@ const Navbar = () => {
                                         <ul onClick={ menueHandler } className=" flex flex-col mb-3 divide-y dark:divide-background-dark-5 lg:px-3  divide-gray-300 ">
                                             { status == "authenticated"  ? <li><Link href="/admin-panel" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-green-3"><RiAdminLine/></span>پنل ادمین</Link></li> : null }
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><AiOutlineHome /></span>خانه</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
+                                            <li><Link href="/zekr" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
                                             <li><Link href="/ziartnameh" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FiBookOpen/></span>زیارت نامه ها</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><IoNewspaperOutline /></span>مقاله ها</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><PiImages /></span>گالری تصاویر</Link></li>
