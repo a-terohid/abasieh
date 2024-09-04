@@ -16,7 +16,6 @@ export const POST= async ( req : Request ) => {
 
         //conect to database
         await connectDB ()
-        console.log("rrr");
         
         //Get Data
         const formData = await req.formData();
@@ -29,7 +28,6 @@ export const POST= async ( req : Request ) => {
         let fileName = null;
 
         const Zekr_TextArray = JSON.parse(Zekr_Text || "");
-        console.log(Zekr_TextArray);        
 
         const session = await getServerSession( authOptions )
         if ( !session ) {
@@ -148,6 +146,8 @@ export const PATCH= async ( req : Request ) => {
 
         let fileName = null;
 
+        const Zekr_TextArray = JSON.parse(Zekr_Text || "");
+        
         //Check Session that is admin or owner that use API
         const session = await getServerSession( authOptions )
         if ( !session ) {
@@ -156,7 +156,7 @@ export const PATCH= async ( req : Request ) => {
                 { status: 401 }
             );
         }
-
+        
         const user  = await USER.findOne({ email : session?.user?.email })
         if( !user ) {
             return NextResponse.json(
@@ -164,41 +164,41 @@ export const PATCH= async ( req : Request ) => {
                 { status: 404 }
             );
         }
-
+        
         if( !Title ||
             !Author ||
             !Year ||
-            !Zekr_Text )
+            !Zekr_TextArray )
             {   
                 return NextResponse.json(
                     { error: ERROR.INVALID_DATA },
                     { status : 422 }
                 )
             }
-
-
+            
+            
             const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
             const ISExist = save?.Years?.includes(Year)
-
+            
             if( !ISExist ){
                 return NextResponse.json(
                     { error: ERROR.INVALID_YEAR },
                     { status : 422 }
                 )
             } 
-
-        const zekr = await Zekr.findOne({ _id : id })
-
-
-        if( !zekr ){
-            return NextResponse.json(
-                { error: ERROR.CANT_FIND_ZEKR },
-                { status: 404 }
-            );
-        }
-
-        const last_voice = zekr.Voice
-        
+            
+            const zekr = await Zekr.findOne({ _id : id })
+            
+            
+            if( !zekr ){
+                return NextResponse.json(
+                    { error: ERROR.CANT_FIND_ZEKR },
+                    { status: 404 }
+                );
+            }
+            
+            const last_voice = zekr.Voice
+            
 
         // upload Voice of ziartnameh id its is existing
         if( Voice ) { 
@@ -243,17 +243,18 @@ export const PATCH= async ( req : Request ) => {
             await writeFile(`${uploadDir}/${fileName}`, buffer);
         }
     
-
+        
+        
         zekr.Title = Title;
         zekr.Author = Author;
         zekr.Year = Year;
-        zekr.Zekr_Text = Zekr_Text;
+        zekr.Zekr_Text = Zekr_TextArray;
         zekr.Voice = fileName;
-
+        
         zekr.save();
 
         return NextResponse.json(
-            { message: MESSAGE },
+            { message: MESSAGE.ZEKR_EDIT },
             { status: 201 }
         );
 

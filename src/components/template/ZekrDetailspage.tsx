@@ -38,7 +38,7 @@ const ZekrDetailspage = ({zekr , admin}:any) => {
                 {
                     admin ? <div className='mt-6 flex gap-x-3 items-center justify-center'>
                         <DeleteZekrButton admin={true} _id={_id} />
-                        <Link href={`/admin-panel/zekr/edit/${_id}`} className=" bg-primary-green-1 text-white rounded w-fit py-2 px-3 text-sm cursor-pointer">ویرایش زیارت نامه</Link>
+                        <Link href={`/admin-panel/zekr/edit/${_id}`} className=" bg-primary-green-1 text-white rounded w-fit py-2 px-3 text-sm cursor-pointer">ویرایش ذکر</Link>
                     </div> : null
                 }
             </div>

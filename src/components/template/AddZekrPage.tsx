@@ -109,7 +109,6 @@ const AddZekrPage = ({years}:any) => {
         }
         
         setLoading( true );
-        console.log("ttt");
 
         const res = await fetch("/api/zekr" , {
             method: "POST",
