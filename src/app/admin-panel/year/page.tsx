@@ -8,8 +8,6 @@ export const metadata: Metadata = {
     description: "قسمت سال های پنل ادمین هییت سقایی عباسیه جولان",
     keywords: "پنل ادمین, سال ها, هییت سقایی عباسیه جولان",
 };
-  
-
 
 const page = async () => {
 

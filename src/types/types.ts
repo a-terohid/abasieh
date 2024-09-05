@@ -1,4 +1,4 @@
-import { ROLE } from "./enums";
+import { ROLE, TRUSTEES_ROLE } from "./enums";
 
 export interface User  {
     email : string,
@@ -74,6 +74,15 @@ export type Zekr_Text_Paragraph = {
     hadith : string,
 }
 
+export type TRUSTEES_PERSONE = { 
+    fullName: string,
+    phone: string,
+    role : TRUSTEES_ROLE,
+    img ?: string,
+    _id ?: string
+}
+
 export interface Save {
     Years: String[]
+    Trustees : TRUSTEES_PERSONE[]
 };

@@ -19,6 +19,7 @@ const AdminLayout = async ({ children , role , email }: adminLayoutProps ) => {
                     { role == ROLE.OWNER ? <p className=' px-2 font-bold bg-secondary-red-4 text-secondary-red-2 rounded-md' >owner</p> : null }
                 </div>
                 { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >مدیر ها</Link> : null }
+                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/trustees" >هیئت امنا</Link> : null }
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ziartnameh" >زیارت‌ نامه ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/year" >سال ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/zekr" >ذکر ها</Link>
