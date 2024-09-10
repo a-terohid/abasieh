@@ -32,6 +32,6 @@
       "@/constants/*": ["src/constants/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/test/page.jsx", "src/app/api/Ziartnameh/route.tsx", "src/app/text/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/test/page.jsx", "src/app/api/Ziartnameh/route.tsx", "src/app/text/page.jsx", "src/utils/email-template.tsx"],
   "exclude": ["node_modules"]
 }

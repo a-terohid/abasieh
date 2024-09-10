@@ -50,5 +50,6 @@ export enum MESSAGE {
     ZEKR_EDIT = "ذکر با موفقیت ویرایش شد!",
     NEW_YEARS = "سال جدید ساخته شد!",
     YEAR_DELETED = "سال با موفقیت خذف شد!",
-    NEW_ZEKR = "ذکر با موفقیت اضافه شد"
+    NEW_ZEKR = "ذکر با موفقیت اضافه شد",
+    SEND_MESSAGE = "پیام با موفقیت ارسال شد!"
 }

@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-import { FaInstagram } from "react-icons/fa6";
 import { FaTelegram } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
 import { AiFillInstagram } from "react-icons/ai";
 import Eita from '@/public/img/Eita.png'
 

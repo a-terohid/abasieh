@@ -15,11 +15,9 @@ import { GoNote } from "react-icons/go";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
 import { MdOutlineCall } from "react-icons/md";
-import { PiImages } from "react-icons/pi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiSchoolLine } from "react-icons/ri";
-import { RxCalendar } from "react-icons/rx";
 import { useSession } from "next-auth/react";
 import { RiAdminLine } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
@@ -65,9 +63,8 @@ const Navbar = () => {
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><TbMoneybag /></span>کمک به هیئت</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><HiOutlineUserGroup /></span>پیر غلامان</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RiSchoolLine /></span>مراسم ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RxCalendar /></span>جلسه های هفتگی</Link></li>
                                             <li><Link href="/trustess" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FaPeopleGroup /></span>هیئت امنا</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><MdOutlineCall /></span>ارتباط با ما</Link></li>
+                                            <li><Link href="/contactus" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><MdOutlineCall /></span>ارتباط با ما</Link></li>
                                         </ul>
                                     </div>
                         </nav> : null
