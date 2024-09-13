@@ -60,9 +60,9 @@ const Navbar = () => {
                                             <li><Link href="/zekr" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><GoNote /></span>ذکر ها</Link></li>
                                             <li><Link href="/ziartnameh" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FiBookOpen/></span>زیارت نامه ها</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><IoNewspaperOutline /></span>مقاله ها</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><TbMoneybag /></span>کمک به هیئت</Link></li>
+                                            <li><Link href="/donate" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><TbMoneybag /></span>کمک به هیئت</Link></li>
                                             <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><HiOutlineUserGroup /></span>پیر غلامان</Link></li>
-                                            <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RiSchoolLine /></span>مراسم ها</Link></li>
+                                            {/* <li><Link href="/" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><RiSchoolLine /></span>مراسم ها</Link></li> */}
                                             <li><Link href="/trustess" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><FaPeopleGroup /></span>هیئت امنا</Link></li>
                                             <li><Link href="/contactus" className="flex items-center gap-x-2 hover:text-xl text-lg py-2"><span className="text-primary-red-2"><MdOutlineCall /></span>ارتباط با ما</Link></li>
                                         </ul>
