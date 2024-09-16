@@ -86,3 +86,11 @@ export interface Save {
     Years: String[]
     Trustees : TRUSTEES_PERSONE[]
 };
+
+export interface Ceremony {
+    title: string
+    description: string
+    date: string
+    coverImage: string
+    images : string[]
+}

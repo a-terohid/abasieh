@@ -29,6 +29,7 @@ export enum ERROR {
     NO_ZIARTNAMEH = "هیچ زیارت نامه وجود ندارد!",
     NO_YEAR = "هیچ سالی نامه وجود ندارد!",
     NO_ZEKR = "هیچ ذکری وجود ندارد!",
+    NO_CEREMNOY = "هیچ مراسمی وجود ندارد!",
     NO_TRUSTEES = "هیچ عضوی وجود ندارد!",
     AD_ACCESS = "دسترسی شما به این عمل محدود شده است!",
     ACCESS_DENIED = "دسترسی رد شد!",
@@ -40,6 +41,7 @@ export enum ERROR {
 export enum MESSAGE {
     NEW_ADMIN = "مدیر با موفقیت ایجاد شد!",
     NEW_TRUSTEES = " عضو با موفقیت ایجاد شد!",
+    NEW_CERMONY = " مراسم با موفقیت ایجاد شد!",
     ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
     NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
     ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",
