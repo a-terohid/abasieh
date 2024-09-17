@@ -14,7 +14,7 @@ const DeleteTrustessButton = ({_id}:any) => {
 
         setLoading( true );
 
-        if (confirm("آیا می خواید عضو را پاک کنید ؟ ") == false) {
+        if (confirm("آیا می خواهید عضو را پاک کنید ؟ ") == false) {
           setLoading( false );
           return
         } 

@@ -60,7 +60,7 @@ const config: Config = {
       },
     },
     animation: {
-      'scale-up-ver-top': 'scale-up-ver-top 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
+      'scale-up-ver-top': 'scale-up-ver-top 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
     },
     },
     fontFamily: {

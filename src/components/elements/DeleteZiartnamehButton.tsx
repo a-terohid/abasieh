@@ -15,7 +15,7 @@ const DeleteZiartnamehButton = ({ _id , admin }:any) => {
 
         setLoading( true );
 
-        if (confirm("آیا می خواید زیارت نامه را پاک کنید ؟ ") == false) {
+        if (confirm("آیا می خواهید زیارت نامه را پاک کنید ؟ ") == false) {
           setLoading( false );
           return
         } 

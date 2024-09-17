@@ -16,7 +16,7 @@ const DeleteYearButton = ({year}:any) => {
 
         setLoading( true );
 
-        if (confirm("آیا می خواید سال را پاک کنید ؟ ") == false) {
+        if (confirm("آیا می خواهید سال را پاک کنید ؟ ") == false) {
           setLoading( false );
           return
         } 

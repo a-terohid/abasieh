@@ -15,7 +15,7 @@ const DeleteZekrButton = ({ _id ,admin }:any) => {
 
         setLoading( true );
 
-        if (confirm("آیا می خواید ذکر را پاک کنید ؟ ") == false) {
+        if (confirm("آیا می خواهید ذکر را پاک کنید ؟ ") == false) {
           setLoading( false );
           return
         } 
