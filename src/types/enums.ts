@@ -36,6 +36,7 @@ export enum ERROR {
     ACCESS_DENIED = "دسترسی رد شد!",
     YEAR_EXIST = "این سال قبلا اضافه شده است!",
     ZIARTNAMEH_DONT_EXIST = "همچین زیارت نامه ای یافت نشد!",
+    CEREMONY_DONT_EXIST = "همچین مراسمی یافت نشد!",
     ZEKR_DONT_EXIST = "همچین ذکری یافت نشد!"
 }
 

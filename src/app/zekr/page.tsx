@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     robots: "index, follow",
   };
   
-  export const viewport = {
-    width: "device-width",
-    initialScale: 1,
-  };
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 const page = async ({ searchParams }:any) => {
 
