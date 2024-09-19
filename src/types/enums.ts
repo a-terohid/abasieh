@@ -51,6 +51,7 @@ export enum MESSAGE {
     TRUSTEES_DELETE = "عضو با موفقیت حذف شد!",
     ZEKR_DELETE = "ذکر با موفقیت حذف شد!",
     ZIARTNAMEH_EDIT = "زیارت‌نامه با موفقیت ویرایش شد!",
+    CEREMONY_EDIT = "مراسم با موفقیت ویرایش شد!",
     TRUSTEES_EDIT = "عضو با موفقیت ویرایش شد!",
     ZEKR_EDIT = "ذکر با موفقیت ویرایش شد!",
     NEW_YEARS = "سال جدید ساخته شد!",

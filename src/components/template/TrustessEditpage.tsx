@@ -29,7 +29,7 @@ const TrustessEditpage = ({trustess}:any) => {
 
     const handleCheckboxChange = (event : any) => {
         setIsChecked(event.target.checked);
-      };    
+    };    
 
     const changeHandler = ( event: any ) => {
         const { name , value } = event.target

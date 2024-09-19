@@ -9,7 +9,6 @@ import mime from "mime";
 import { stat, mkdir, writeFile } from "fs/promises";
 import fs from "fs";
 import { TRUSTEES_PERSONE } from "@/types/types";
-import { checkImageExists } from "@/utils/checkIMG";
 
 export async function POST( req : Request ){
 

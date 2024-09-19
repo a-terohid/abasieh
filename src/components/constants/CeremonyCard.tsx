@@ -20,7 +20,7 @@ const CeremonyCard = ({ceremony}:any) => {
     return (
         <div className='px-4 py-5 bg-background-light-1 text-text-light rounded-xl shadow'>
             <div>
-                <img className='w-80 h-52 rounded-xl shadow-lg ' src={`uploads/images/cermony/${enTitle}/${coverImage}`} alt={title} />
+                <img className='w-80 h-52 rounded-xl shadow-lg ' src={`uploads/images/cermony/${enTitle}/cover/${coverImage}`} alt={title} />
             </div>
             <div className='mt-4'>
                 <h1 className='font-bold lg:text-lg' >{title}</h1>

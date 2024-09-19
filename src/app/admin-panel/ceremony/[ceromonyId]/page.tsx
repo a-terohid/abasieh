@@ -29,6 +29,7 @@ export async function generateMetadata({ params: { ceromonyId } }: any): Promise
 }
 
 const page = async ({ params: { ceromonyId } }: any) => {
+  
   await connectDB();
 
   const ceremony = await Ceremony.findOne({ _id: ceromonyId });
