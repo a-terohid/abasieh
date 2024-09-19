@@ -82,9 +82,18 @@ export type TRUSTEES_PERSONE = {
     _id ?: string
 }
 
+export type OLD_SLAVES = { 
+    fullName: string,
+    phone: string,
+    role : TRUSTEES_ROLE,
+    img ?: string,
+    _id ?: string
+}
+
 export interface Save {
     Years: String[]
     Trustees : TRUSTEES_PERSONE[]
+    OldSlaves : OLD_SLAVES[]
 };
 
 export interface Ceremony {
