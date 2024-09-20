@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { BiEdit } from 'react-icons/bi';
 import jalaali from 'jalaali-js';
 import DeleteOldSlavesButton from '../elements/DeleteOldSlavesButton';
+import { englishToPersianNumber } from '@/utils/englishToPersianNumber';
 
 const OldSlavesCart = ({ OLS , admin }: any) => {
     const { fullName, date , img, _id } = JSON.parse(OLS);
@@ -41,7 +42,7 @@ const OldSlavesCart = ({ OLS , admin }: any) => {
             </div>
             <div className='mt-4 flex flex-col items-center justify-center gap-y-2' >
                 <h1 className='font-bold' >{fullName}</h1>
-                <p className='flex gap-x-2'><span>تاریخ وفات: </span>{shamDATE}</p>
+                <p className='flex gap-x-2'><span>تاریخ وفات: </span>{englishToPersianNumber(shamDATE)}</p>
             </div>
             {
                 admin ? <div className="flex gap-x-2 mt-4 text-lg justify-center items-center">
