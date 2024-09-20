@@ -18,8 +18,7 @@ export async function POST( req : Request ){
 
         const formData = await req.formData();
         const fullName = formData.get("fullName") as string || null;
-        const phone = formData.get("phone") as string || null;
-        const role = formData.get("role") as string || null;
+        const date = formData.get("date") as string || null;
         const img = formData.get("img") as File || null;
 
         let fileName = null;
@@ -32,7 +31,7 @@ export async function POST( req : Request ){
             );
         }
 
-        if( !fullName || !phone || !role ) {
+        if( !fullName || !date ) {
             return NextResponse.json(
                 { error: ERROR.INVALID_DATA },
                 { status : 422 }
@@ -79,8 +78,7 @@ export async function POST( req : Request ){
 
             const newOldSlaves = {
                 fullName,
-                phone,
-                role,
+                date,
                 img: fileName
             }
 
@@ -113,12 +111,11 @@ export async function PATCH(req: Request) {
 
         const formData = await req.formData();
         const fullName = formData.get("fullName") as string || null;
-        const phone = formData.get("phone") as string || null;
-        const role = formData.get("role") as string || null;
+        const date = formData.get("date") as string || null;
         const img = formData.get("img") as File || null;
         const id = formData.get("id") as string || null;
-        const isChecked = formData.get("isChecked") as string || null;;
-        
+        const isChecked = formData.get("isChecked") as string || null;
+
         let fileName = null;
 
         const session = await getServerSession(authOptions);
@@ -126,7 +123,7 @@ export async function PATCH(req: Request) {
             return NextResponse.json({ error: ERROR.LOGIN }, { status: 401 });
         }
 
-        if (!fullName || !phone || !role) {
+        if (!fullName || !date) {
             return NextResponse.json({ error: ERROR.INVALID_DATA }, { status: 422 });
         }
 
@@ -140,57 +137,62 @@ export async function PATCH(req: Request) {
 
         // به روز رسانی اطلاعات
         ISExist.fullName = fullName;
-        ISExist.phone = phone;
-        ISExist.role = role;
+        ISExist.date = date;
 
         // فقط در صورتی که تصویر جدید بارگذاری شده باشد
         if (img && isChecked === "true") {
             // حذف تصویر قدیمی اگر وجود داشته باشد
             if (ISExist.img) {
-                const fullPath = path.resolve('public/uploads/images/oldSlaves`;', ISExist.img);
+                const fullPath = path.resolve('public/uploads/images/oldSlaves', ISExist.img);
                 if (fs.existsSync(fullPath)) {
                     fs.unlinkSync(fullPath);
+                    ISExist.img = "";
+                    await save.save();
+
                 }
             }
+            
 
             // بارگذاری تصویر جدید
             const mimeType = img.type;
-            const buffer = Buffer.from(await img.arrayBuffer());
+            const buffer = Buffer.from(await img.arrayBuffer())
 
             const relativeUploadDir = `/uploads/images/oldSlaves`;
             const uploadDir = join(process.cwd(), "public", relativeUploadDir);
 
+        
             try {
                 await stat(uploadDir);
             } catch (e: any) {
-                if (e.code === "ENOENT") {
-                    await mkdir(uploadDir, { recursive: true });
+                if (e.code == "ENOENT") {
+                    await mkdir(uploadDir);
                 } else {
                     console.error("Error creating directory:", e);
                     return NextResponse.json({ error: ERROR.SERVER_ERROR }, { status: 500 });
                 }
             }
 
+
             // ایجاد نام فایل یکتا
             const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
             const extension = mime.getExtension(mimeType);
             const currentDate = new Date().toISOString().slice(0, 10);
             fileName = `${currentDate}$${img.name.replace(/\.[^/.]+$/, "")}$${uniqueSuffix}.${extension}`;
-
+            
             // آپلود فایل
-            await writeFile(`${uploadDir}/${fileName}`, buffer);
-
+            await writeFile(`${uploadDir}/${fileName}`, buffer); // اینجا تغییر کنید
+            
             // به روز رسانی مسیر تصویر در دیتابیس
             ISExist.img = fileName;
         }
-
+        
         // ذخیره تغییرات
         await save.save();
 
         return NextResponse.json({ message: MESSAGE.OLD_SLAVES_EDIT }, { status: 201 });
 
     } catch (err) {
-        console.log(err);
+        console.log("err:" ,err);
         return NextResponse.json({ error: ERROR.SERVER_ERROR }, { status: 500 });
     }
 }

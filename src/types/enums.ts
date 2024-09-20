@@ -33,11 +33,13 @@ export enum ERROR {
     NO_ZEKR = "هیچ ذکری وجود ندارد!",
     NO_CEREMNOY = "هیچ مراسمی وجود ندارد!",
     NO_TRUSTEES = "هیچ عضوی وجود ندارد!",
+    NO_OLD_SLAVES = "هیچ پیر غلامی وجود ندارد!",
     AD_ACCESS = "دسترسی شما به این عمل محدود شده است!",
     ACCESS_DENIED = "دسترسی رد شد!",
     YEAR_EXIST = "این سال قبلا اضافه شده است!",
     ZIARTNAMEH_DONT_EXIST = "همچین زیارت نامه ای یافت نشد!",
     CEREMONY_DONT_EXIST = "همچین مراسمی یافت نشد!",
+    OLD_SLAVES_EXIST = "همچین پیرغلامی یافت نشد!",
     ZEKR_DONT_EXIST = "همچین ذکری یافت نشد!"
 }
 

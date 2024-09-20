@@ -84,8 +84,7 @@ export type TRUSTEES_PERSONE = {
 
 export type OLD_SLAVES = { 
     fullName: string,
-    phone: string,
-    role : TRUSTEES_ROLE,
+    date: string,
     img ?: string,
     _id ?: string
 }

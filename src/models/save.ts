@@ -34,16 +34,11 @@ const OldSlavesSchema = new Schema<OLD_SLAVES>({
         required: true,
         default: ""
     },
-    phone: {
+    date: {
         type: String,
         required: true,
         default: ""
 
-    },
-    role: {
-        type: String,
-        required: true,
-        default: TRUSTEES_ROLE.NORMAL 
     },
     img: {
         type: String,
