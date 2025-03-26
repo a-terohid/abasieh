@@ -5,10 +5,10 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path, { join } from "path";
+import { mkdir, writeFile, stat, readdir, unlink, rename } from "fs/promises";
 import { authOptions } from "src/components/lib/auth";
 import mime from "mime";
 import { persianToFinglish } from "@/utils/prTOen";
-import { mkdir, writeFile, stat, readdir, unlink, rename } from "fs/promises";
 import Ceremony from "@/models/cermony";
 
 export async function POST(req: Request) {

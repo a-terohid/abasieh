@@ -23,6 +23,7 @@ const AdminLayout = async ({ children , role , email }: adminLayoutProps ) => {
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ziartnameh" >زیارت‌ نامه ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/year" >سال ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/zekr" >ذکر ها</Link>
+                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/blogs" >مقاله ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ceremony" >مراسم ها</Link>
                 <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/oldSlaves" >پیر غلام ها</Link>
             </div>

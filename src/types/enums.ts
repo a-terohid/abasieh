@@ -48,6 +48,7 @@ export enum MESSAGE {
     NEW_TRUSTEES = " عضو با موفقیت ایجاد شد!",
     NEW_OLD_SLAVES = " پیر غلام با موفقیت ایجاد شد!",
     NEW_CERMONY = " مراسم با موفقیت ایجاد شد!",
+    NEW_BLOG = " مقاله با موفقیت ایجاد شد!",
     ADMIN_DELETE = "مدیر با موفقیت حذف شد!",
     NEW_ZIARTNAMEH = "زیارت‌نامه با موفقیت اضافه شد!",
     ZIARTNAMEH_DELETE = "زیارت‌نامه با موفقیت حذف شد!",

@@ -102,3 +102,18 @@ export interface Ceremony {
     coverImage: string
     images : string[]
 }
+
+
+export type BlogPost = {
+    title: string;
+    content: RichTextNode[]; 
+    author: string;
+    thumbnailUrl?: string;  
+};
+  
+export type RichTextNode = {
+    type: string;
+    children: RichTextNode[] | string;
+    src?: string;  
+    alt?: string;  
+};
