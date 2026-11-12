@@ -65,7 +65,7 @@ export async function POST(req: Request) {
 
         parsedContent = await Promise.all(parsedContent.map(async (node: any) => {
             if (node.type === 'image') {
-                const imageBuffer = Buffer.from(await fetch(node.src).then(res => res.arrayBuffer()));
+                const imageBuffer = Buffer.from(new Uint8Array((await (await fetch(node.src)).arrayBuffer()) as ArrayBuffer));
                 const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
                 const extension = mime.getExtension('image/jpeg'); // فرض بر jpeg بودن عکس
                 const fileName = `${uniqueSuffix}.${extension}`;

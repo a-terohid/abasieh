@@ -21,40 +21,42 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
+      "src/*": [
+        "./src/*"
+      ],
       "@/public/*": [
-        "public/*"
+        "./public/*"
       ],
       "@/app/*": [
-        "src/app/*"
+        "./src/app/*"
       ],
       "@/utils/*": [
-        "src/utils/*"
+        "./src/utils/*"
       ],
       "@/models/*": [
-        "src/models/*"
+        "./src/models/*"
       ],
       "@/layout/*": [
-        "src/components/layout/*"
+        "./src/components/layout/*"
       ],
       "@/module/*": [
-        "src/components/module/*"
+        "./src/components/module/*"
       ],
       "@/template/*": [
-        "src/components/template/*"
+        "./src/components/template/*"
       ],
       "@/providers/*": [
-        "src/providers/*"
+        "./src/providers/*"
       ],
       "@/types/*": [
-        "src/types/*"
+        "./src/types/*"
       ],
       "@/api/*": [
-        "src/app/api/*"
+        "./src/app/api/*"
       ],
       "@/constants/*": [
-        "src/constants/*"
+        "./src/constants/*"
       ]
     },
     "target": "ES2017"

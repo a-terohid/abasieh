@@ -3,8 +3,6 @@ import { EmailTemplate } from '@/utils/email-template';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
     try {
 
@@ -19,6 +17,8 @@ export async function POST(req: Request) {
         )
     }
 
+    // Created per request so the build does not need RESEND_API_KEY.
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const username = Email.split('@')[0];
 
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         from: `${username}@resend.dev`, 
         to: ['abasiehjoulan@gmail.com'],
         subject: Subject,
-        react: EmailTemplate({ Name, Email, Text }),
+        react: <EmailTemplate Name={Name} Email={Email} Text={Text} />,
     });
 
 
