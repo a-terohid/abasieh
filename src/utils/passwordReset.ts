@@ -65,7 +65,12 @@ export const sendResetEmail = async (to: string, link: string): Promise<boolean>
 </div>`,
     });
     if (error) {
-        console.error("[password-reset] email failed:", error);
+        // Log the actual reason (the error object itself serialises as "{}" in the Next.js log).
+        const e = error as { name?: string; message?: string; statusCode?: number };
+        console.error(`[password-reset] email failed: ${e.name ?? "error"} (${e.statusCode ?? "?"}): ${e.message ?? String(error)} — from=${from}`);
+        if (!process.env.RESEND_FROM_EMAIL) {
+            console.error("[password-reset] RESEND_FROM_EMAIL is not set; Resend's test sender only delivers to the Resend account owner's address. Verify a domain in Resend and set RESEND_FROM_EMAIL.");
+        }
         return false;
     }
     return true;
