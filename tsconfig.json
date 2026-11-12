@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -10,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -19,19 +23,54 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/public/*": ["public/*"],
-      "@/app/*": ["src/app/*"],
-      "@/utils/*": ["src/utils/*"],
-      "@/models/*": ["src/models/*"],
-      "@/layout/*": ["src/components/layout/*"],
-      "@/module/*": ["src/components/module/*"],
-      "@/template/*": ["src/components/template/*"],
-      "@/providers/*": ["src/providers/*"],
-      "@/types/*": ["src/types/*"],
-      "@/api/*": ["src/app/api/*"],
-      "@/constants/*": ["src/constants/*"]
-    }
+      "@/public/*": [
+        "public/*"
+      ],
+      "@/app/*": [
+        "src/app/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/models/*": [
+        "src/models/*"
+      ],
+      "@/layout/*": [
+        "src/components/layout/*"
+      ],
+      "@/module/*": [
+        "src/components/module/*"
+      ],
+      "@/template/*": [
+        "src/components/template/*"
+      ],
+      "@/providers/*": [
+        "src/providers/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/api/*": [
+        "src/app/api/*"
+      ],
+      "@/constants/*": [
+        "src/constants/*"
+      ]
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/test/page.jsx", "src/app/api/Ziartnameh/route.tsx", "src/app/text/page.jsx", "src/utils/email-template.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/test/page.jsx",
+    "src/app/api/Ziartnameh/route.tsx",
+    "src/app/text/page.jsx",
+    "src/utils/email-template.tsx",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
