@@ -4,6 +4,7 @@ import Input from "@/module/Input";
 import Loader from "@/module/Loader";
 import { AuthType } from "@/types/types";
 import { useRouter } from 'next/navigation'
+import Link from "next/link";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { SignInResponse, signIn } from "next-auth/react";
@@ -78,6 +79,7 @@ const Signin =() => {
                         label= "پسورد:"
                         type = "password"
                         textarea = {false} />
+                    <Link href="/forgot-password" className="link -mt-2 justify-self-end text-sm">رمز عبور را فراموش کرده‌اید؟</Link>
                    
                     {
                         loading ? <div className="flex justify-center"><Loader /></div> :

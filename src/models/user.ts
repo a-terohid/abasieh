@@ -20,6 +20,15 @@ const UserSchema = new Schema<User , Schema.Types.ObjectId>({
         required: true,
         default : ROLE.ADMIN
     },
+    // Password reset: only a SHA-256 hash of the one-time token is stored, never the token.
+    resetPasswordTokenHash : {
+        type : String,
+        default : null
+    },
+    resetPasswordExpires : {
+        type : Date,
+        default : null
+    },
     
 } , { collection : "USER" })
 

@@ -3,7 +3,9 @@ import { ROLE, TRUSTEES_ROLE } from "./enums";
 export interface User  {
     email : string,
     password : string,
-    role : ROLE
+    role : ROLE,
+    resetPasswordTokenHash ?: string | null,
+    resetPasswordExpires ?: Date | null,
 }
 
 export type AuthType = {

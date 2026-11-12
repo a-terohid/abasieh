@@ -161,3 +161,26 @@ Errors are thrown as Persian strings and surface in `signIn().error`:
 
 ### `POST /api/upload-image` — **does not exist**
 It's referenced by `src/components/module/test.tsx`, so it returns 404.
+
+---
+
+## Password reset (added 2026-11-12)
+
+### `POST /api/auth/forgot-password`
+`src/app/api/auth/forgot-password/route.ts`
+- **Auth:** none (public). Body: `{ email }`.
+- Returns 422 `INVALID_EMAIL` for a malformed email.
+- Returns 429 `TOO_MANY_REQUESTS` when rate limited: 10 per IP and 3 per email per 15 minutes. The counter is in memory and per server instance.
+- Otherwise **always returns 200 `RESET_LINK_SENT`, whether or not the account exists** (no account enumeration).
+- If the account exists:
+  - It stores the SHA-256 hash of a 32-byte random token in `USER.resetPasswordTokenHash`, with `resetPasswordExpires` set to now + 30 minutes.
+  - It emails `${NEXTAUTH_URL}/reset-password?token=…` through Resend, from `RESEND_FROM_EMAIL`.
+  - In development, the link is also printed to the server log.
+
+### `POST /api/auth/reset-password`
+`src/app/api/auth/reset-password/route.ts`
+- **Auth:** none (the token is the credential). Body: `{ token, password }`.
+- Returns 400 `RESET_LINK_INVALID` for a malformed, unknown, expired or already-used token.
+- Returns 422 `WEAK_PASSWORD` for passwords under 8 characters.
+- Returns 429 when rate limited (20 per IP per 15 minutes).
+- On success it bcrypt-hashes the new password (cost 12, as at signup), clears both token fields (single use) and returns 200 `PASSWORD_RESET`.

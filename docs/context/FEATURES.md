@@ -204,3 +204,23 @@ Edit and delete defects, verified by reading `src/app/api/**`. API.md has the fu
 - **Ceremony year filter (F-05): new, on the existing date data.** `/ceromony?year=1403` is evaluated **in MongoDB** as a date range. The chips list only years that have ceremonies. Invalid or Gregorian values are ignored, which shows everything rather than a wrong conversion.
 - **Add year (admin):** the label says «هجری شمسی», the placeholder shows the current Jalali year, and the input uses a numeric keyboard. Validation is unchanged.
 - **Verified:** the Nowruz 1403→1404 boundary (1403 is a leap year), the minute before Nowruz, Persian-digit params, empty years, invalid params and legacy UTC-midnight records.
+
+---
+
+## Update 2026-11-12 — Password reset (F-10)
+
+- **Pages:**
+  - `/forgot-password` (`T/ForgotPassword.tsx`): redirects to the admin panel if already signed in.
+  - `/reset-password?token=…` (`T/ResetPassword.tsx`): `noindex` and `referrer: no-referrer`, so the token never leaks through the Referer header.
+- **Entry point:** the «رمز عبور را فراموش کرده‌اید؟» link on `/signin`.
+- **Data:** two optional `USER` fields, `resetPasswordTokenHash` and `resetPasswordExpires`. The change is additive; no migration is needed.
+- **Helpers:** `src/utils/passwordReset.ts` covers the token, rate limiter and email sending.
+- **New env var `RESEND_FROM_EMAIL`:** a sender address on a domain verified in Resend. Without it, Resend's test sender is used, which only delivers to the Resend account owner.
+- **Verified end to end:**
+  - no account enumeration
+  - only the token hash is stored, with a 30-minute expiry
+  - weak passwords and malformed tokens are rejected
+  - the reset changes the NextAuth credentials (new password works, old one fails)
+  - the token is single-use
+  - an expired token is rejected and the password stays unchanged
+  - the rate limits trigger
