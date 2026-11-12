@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import Ceremony from "@/models/cermony";
 import CermonyAdminpage from "@/template/CermonyAdminpage";
 import connectDB from "@/utils/connectDB";
@@ -16,7 +17,7 @@ const page = async () => {
 
     const ceremonies = await Ceremony.find()
 
-    return ( <CermonyAdminpage ceremonies={ceremonies} /> );
+    return ( <CermonyAdminpage ceremonies={toPlain(ceremonies)} /> );
 };
 
 export default page;

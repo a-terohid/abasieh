@@ -1,42 +1,51 @@
+"use client"
+
+import { useId } from "react";
 import { InputType } from "@/types/types";
+import { FiUploadCloud } from "react-icons/fi";
 
+const Input = ( { changeHandler , value, label , type , name , textarea = false, Voice , ResetVoice, placeholder, inputMode  } : InputType ) => {
 
-
-const Input = ( { changeHandler , value, label , type , name , textarea = false, Voice , ResetVoice  } : InputType ) => {
+    const id = useId();
+    const cleanLabel = typeof label === "string" ? label.trim().replace(/[:：]\s*$/, "") : label;
 
     return (
-        <div className="flex flex-col gap-y-2 " >
-            <label >{ label }</label>
+        <div className="field-group" >
             {
-                textarea ? 
-                    <textarea 
+                type !== "file" || textarea ? <label htmlFor={id} className="field-label">{ cleanLabel }</label> : <span className="field-label">{ cleanLabel }</span>
+            }
+            {
+                textarea ?
+                    <textarea
+                    id={id}
                     value={ value }
-                    name={ name }  
+                    name={ name }
                     rows={5}
                     onChange={ ( event ) => changeHandler( event ) }
-                    className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray  text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1"  /> 
-                : 
-                  type !== "file" ? 
-                    <input 
+                    className="field" />
+                :
+                  type !== "file" ?
+                    <input
+                    id={id}
                     type={ type }
+                    placeholder={ placeholder }
+                    inputMode={ inputMode }
                     value={  value }
-                    name={ name }  
+                    name={ name }
                     onChange={ ( event ) => changeHandler( event ) }
-                    className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray  text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1"  /> 
-                :  <div className="mt-3">
-                        <input 
+                    className="field" />
+                :  <div>
+                        <input
                         type={ type }
-                        id="fileInput"
-                        name={ name }  
+                        id={id}
+                        name={ name }
                         onChange={ ( event ) => changeHandler( event ) }
-                        className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray  text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1"
-                        style={{ display: 'none' }} />
-                        <label htmlFor="fileInput" className=" bg-primary-green-1 text-white rounded md:w-1/2 py-2 px-3" >
-                            {Voice ? Voice.name : "انتخاب فایل"}
+                        className="sr-only" />
+                        <label htmlFor={id} className="file-trigger" >
+                            <FiUploadCloud aria-hidden className="shrink-0 text-lg text-accent" />
+                            <span className="truncate">{Voice ? Voice.name : "انتخاب فایل"}</span>
                         </label>
                 </div>
-            
-                
             }
         </div>
     );

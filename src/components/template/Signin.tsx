@@ -57,10 +57,13 @@ const Signin =() => {
 
 
     return (
-        <div className=" container flex flex-col h-[600px] items-center justify-center" >
-            <div className="w-fit p-7 shadow-xl md:w-96 dark:bg-background-dark-2 bg-background-light-2 rounded-lg" >
-                <h4 className="text-2xl text-Yellow font-bold" >ورود</h4>
-                <form className="flex flex-col gap-y-6 mt-5" >
+        <div className="shell flex min-h-[calc(100dvh-14rem)] items-center justify-center py-12" >
+            <div className="card w-full max-w-sm p-6 sm:p-8" >
+                <div className="mb-6 grid gap-1">
+                    <span className="eyebrow">پنل مدیریت</span>
+                    <h1 className="text-2xl font-extrabold" >ورود</h1>
+                </div>
+                <form className="grid gap-5" >
                     <Input 
                         value={ email }
                         name= "email"
@@ -77,8 +80,8 @@ const Signin =() => {
                         textarea = {false} />
                    
                     {
-                        loading ? <Loader /> :
-                            <button type="submit" onClick={ signinHandler } className=" bg-primary-red-1 text-white rounded py-2" >ورود</button>
+                        loading ? <div className="flex justify-center"><Loader /></div> :
+                            <button type="submit" onClick={ signinHandler } className="btn btn-primary btn-block" >ورود</button>
                     }
                 </form>
             </div>

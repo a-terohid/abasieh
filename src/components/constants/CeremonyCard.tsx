@@ -1,38 +1,40 @@
-import { englishToPersianNumber } from '@/utils/englishToPersianNumber';
+import { formatJalaliLong } from '@/utils/jalali';
 import { persianToFinglish } from '@/utils/prTOen';
-import jalaali from 'jalaali-js';
 import Link from 'next/link';
+import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import { FiImage } from 'react-icons/fi';
+import { toPersianDigits } from '@/utils/jalali';
 
+// Ceremony report card — identity: the photograph, with the Jalali date on it.
 const CeremonyCard = ({ceremony}:any) => {
 
-    const { title , coverImage, description , date , _id } = ceremony
+    const { title , coverImage, description , date , _id, images } = ceremony
     
     const enTitle = persianToFinglish( title ).replace(/[^a-z0-9]/gi, '_').toLowerCase(); 
 
-    const DATE = new Date(date);
-    const year = DATE.getUTCFullYear();
-    const month = DATE.getUTCMonth() + 1;
-    const day = DATE.getUTCDate();
-
-    const jalaliDate = jalaali.toJalaali(new Date(year, month - 1, day));
-    const shamDATE = `${jalaliDate.jy}/${jalaliDate.jm}/${jalaliDate.jd}`
+    // Jalali date in Tehran time (avoids the previous UTC day-shift).
+    const shamDATE = formatJalaliLong(date)
+    const photos = Array.isArray(images) ? images.length : 0;
     
     return (
-        <div className='px-4 py-5 bg-background-light-1 text-text-light rounded-xl shadow'>
-            <div>
-                <img className='w-80 h-52 rounded-xl shadow-lg ' src={`uploads/images/cermony/${enTitle}/cover/${coverImage}`} alt={title} />
+        <article className='card card-interactive group relative flex h-full flex-col overflow-hidden'>
+            <div className='relative aspect-[3/2] overflow-hidden bg-surface-2'>
+                {/* Path kept as in the original implementation (relative URL); see docs for E-23. */}
+                <img className='h-full w-full object-cover text-[0px] transition-transform duration-500 group-hover:scale-[1.03]' src={`uploads/images/cermony/${enTitle}/cover/${coverImage}`} alt="" loading="lazy" />
+                <div className='absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-night/60 to-transparent' aria-hidden />
+                { shamDATE ? <time dateTime={date} className='absolute bottom-3 start-3 rounded-full bg-night/80 px-3 py-1 text-xs font-semibold text-night-ink backdrop-blur-sm'>{shamDATE}</time> : null }
             </div>
-            <div className='mt-4'>
-                <h1 className='font-bold lg:text-lg' >{title}</h1>
-                <h3 className='text-xs mt-1 mb-2 text-primary-red-2 font-bold'>{englishToPersianNumber(shamDATE)}</h3>
-                <div className=" flex flex-col gap-y-4 w-80 text-justify h-[80px] text-sm" >
-                    <p className="flex gap-x-2 items-start text-xs indent-2  overflow-hidden  text-ellipsis  md:text-base " >{ description }</p>
-                </div>
-                <div className='flex items-end justify-end mt-3' >
-                    <Link className='font-bold text-sm cursor-pointer text-primary-red-2 '  href={`/ceromony/${_id}`} >مشاهده</Link>
+            <div className='card-pad flex flex-1 flex-col gap-2'>
+                <h3 className='text-lg font-bold leading-8 text-ink' >
+                    <Link href={`/ceromony/${_id}`} className='stretched-link outline-none group-hover:text-accent-ink'>{title}</Link>
+                </h3>
+                <p className="line-clamp-3 text-[0.9375rem] leading-8 text-ink-muted" >{ description }</p>
+                <div className='card-footer'>
+                    <span className='flex items-center gap-1.5 nums'>{ photos ? <><FiImage aria-hidden className='text-brass' />{toPersianDigits(photos)} تصویر</> : null }</span>
+                    <span className='link-arrow'>مشاهده گزارش<MdOutlineKeyboardArrowLeft aria-hidden className='text-lg' /></span>
                 </div>
             </div>
-        </div>
+        </article>
     );
 };
 

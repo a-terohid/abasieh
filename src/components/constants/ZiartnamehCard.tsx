@@ -1,24 +1,39 @@
 import { ZiartnamehCardProps } from '@/types/types';
 import Link from 'next/link';
 import React from 'react';
+import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import { FiHeadphones } from 'react-icons/fi';
+import { toPersianDigits } from '@/utils/jalali';
 
-
+// Ziyarat card — identity: the Arabic text. Opens with the first Arabic section in Naskh.
 const ZiartnamehCard: React.FC<ZiartnamehCardProps> = ({ ziartnameh }) => {
         
-    const { Title , Description , _id } = ziartnameh
+    const { Title , Description , _id, Text, Voice } = ziartnameh as any
+    const arabic: string = Text?.[0]?.Original ?? "";
+    const sections: number = Array.isArray(Text) ? Text.length : 0;
 
     return (
-        <div className='px-5 py-4 dark:bg-background-dark-5 bg-background-light-1 rounded-lg w-72  bg-Dark text-f6  shadow-md ' >
-            <div>
-                <h2 className='font-bold text-secondary-red-3 md:text-lg'>{ Title }</h2>
-                <div className=" flex flex-col gap-y-4 px-2 w-full mt-2 text-justify h-[150px]" >
-                    <p className="flex gap-x-2 items-start text-xs indent-4  overflow-hidden  text-ellipsis  md:text-base" >{ Description }</p>
+        <article className='card card-interactive group relative flex h-full flex-col overflow-hidden' >
+            { arabic ? (
+                <div className='border-b border-line bg-accent-soft/60 px-5 py-4 sm:px-6'>
+                    <p lang="ar" dir="rtl" className='line-clamp-2 font-arabic text-xl leading-[2.1] text-accent-ink'>{arabic}</p>
                 </div>
-                <div className='mt-3 text-xs md:text-base font-bold  '>
-                    <Link className=' cursor-pointer text-secondary-red-4 hover:text-secondary-red-3 '  href={`/ziartnameh/${_id}`}>مشاهده زیارت نامه</Link>
+            ) : <div className='h-1 bg-accent/70' aria-hidden /> }
+            <div className='card-pad flex flex-1 flex-col gap-3'>
+                <h3 className='text-lg font-bold leading-8 text-ink'>
+                    <Link href={`/ziartnameh/${_id}`} className='stretched-link outline-none group-hover:text-accent-ink'>{ Title }</Link>
+                </h3>
+                { Description ? <p className="line-clamp-3 text-[0.9375rem] leading-8 text-ink-muted" >{ Description }</p> : null }
+                <div className='card-footer'>
+                    <span className='card-kicker'>
+                        { sections ? <span className='nums'>{toPersianDigits(sections)} بخش</span> : null }
+                        { sections && Voice ? <span className='dot-sep' aria-hidden /> : null }
+                        { Voice ? <span className='flex items-center gap-1.5'><FiHeadphones aria-hidden className='text-accent' />صوت</span> : null }
+                    </span>
+                    <span className='link-arrow'>مشاهده<MdOutlineKeyboardArrowLeft aria-hidden className='text-lg transition-transform group-hover:-translate-x-0.5' /></span>
                 </div>
             </div>
-        </div>
+        </article>
     );
 };
 

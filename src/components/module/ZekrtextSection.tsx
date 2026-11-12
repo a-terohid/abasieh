@@ -6,7 +6,6 @@ const ZekrtextSection = ({text}:any) => {
     const { FirstParagraph, SecondParagraph } = text ;
 
     const [ Section , setSection ] = useState("first")
-    const sectionHandler = () => Section === "first" ? setSection("second") : setSection("first")
 
     const  [paragraph , setParagraph] = useState(FirstParagraph)
 
@@ -22,18 +21,26 @@ const ZekrtextSection = ({text}:any) => {
 
     return (
         <div>
-            <div className="flex items-center justify-center gap-x-3 text-xs md:text-sm" >
-                <p onClick={sectionHandler} className={` ${ Section === "first" ? "bg-primary-red-2" : "bg-primary-red-3"} text-white rounded-xl w-fit py-2 px-3  cursor-pointer`} >بند اول</p>
-                <p onClick={sectionHandler} className={` ${ Section === "second" ? "bg-primary-red-2" : "bg-primary-red-3"} text-white rounded-xl w-fit py-2 px-3  cursor-pointer`} >بند دوم</p>
-            </div>
-            <div className="mt-4 flex flex-col items-center justify-center" >
-                <p className="text-sm font-bold text-right" >{Description}</p>
-                <div className="bg-[#f6f6f6] w-full sm:w-2/3 md:w-[400px] sm:max-w-[400px] dark:bg-background-light-2 px-3 py-4 rounded-lg my-4 text-text-light flex flex-col gap-y-2">
-                    {
-                        Zekr_text_p.map((zp: string , index:number) =><p key={index} className="even:text-left text-sm font-bold dark:text-background-dark-1">{zp}</p>)
-                    }
+            <div className="flex justify-center">
+                <div className="segmented" role="tablist" aria-label="بندهای ذکر">
+                    <button type="button" role="tab" aria-selected={Section === "first"} aria-controls="zekr-band" onClick={() => setSection("first")}>بند اول</button>
+                    <button type="button" role="tab" aria-selected={Section === "second"} aria-controls="zekr-band" onClick={() => setSection("second")}>بند دوم</button>
                 </div>
-                <p className="text-sm font-bold text-right">{hadith}</p>
+            </div>
+            <div id="zekr-band" role="tabpanel" className="mt-8 grid gap-6" >
+                { Description ? <p className="prose-fa mx-auto text-center" >{Description}</p> : null }
+                <div className="verse-sheet">
+                    <div className="hemistichs">
+                        {
+                            Zekr_text_p.map((zp: string , index:number) =><p key={index} className="hemistich">{zp}</p>)
+                        }
+                    </div>
+                </div>
+                { hadith ? (
+                    <blockquote className="mx-auto max-w-[60ch] text-center">
+                        <p className="text-arabic !text-xl">{hadith}</p>
+                    </blockquote>
+                ) : null }
             </div>
         </div>
     );

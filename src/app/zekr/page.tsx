@@ -1,7 +1,9 @@
+import { toPlain } from "@/utils/toPlain";
 import Save from "@/models/save";
 import Zekr from "@/models/zekr";
 import Zekrpage from "@/template/Zekrpage";
 import connectDB from "@/utils/connectDB";
+import { parseJalaliYear } from "@/utils/jalali";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,23 +18,29 @@ export const viewport = {
   initialScale: 1,
 };
 
-const page = async ({ searchParams }:any) => {
+const page = async ({ searchParams: searchParamsPromise }:any) => {
+    const searchParams = await searchParamsPromise;
 
     await connectDB()
 
     const zekrs = await Zekr.find()
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const Years = save.Years.sort((a:string, b:string) => parseInt(a) - parseInt(b));
+    const Years = [...(save?.Years ?? [])].sort((a:string, b:string) => parseInt(a) - parseInt(b));
 
     let finalZekr = zekrs
 
-    
+    // `?year=` holds a Jalali year (as stored in Save.Years / Zekr.Year). Compare as years so
+    // Persian digits or stray spaces still match; fall back to exact string equality for
+    // non-numeric labels. Non-string values (e.g. repeated params) are ignored.
+    const yearParam = typeof searchParams?.year === "string" ? searchParams.year : "";
+    const wanted = parseJalaliYear(yearParam);
 
-    if (searchParams.year) {
-        finalZekr = finalZekr.filter((i:any) => i.Year === searchParams.year);
+    if (yearParam) {
+        finalZekr = finalZekr.filter((i:any) =>
+            wanted !== null ? parseJalaliYear(String(i.Year ?? "")) === wanted : i.Year === yearParam);
     }
     
-    return ( <Zekrpage zekrs={finalZekr} Years={Years} />);
+    return ( <Zekrpage zekrs={toPlain(finalZekr)} Years={toPlain(Years)} activeYear={yearParam} />);
 };
 
 export default page;

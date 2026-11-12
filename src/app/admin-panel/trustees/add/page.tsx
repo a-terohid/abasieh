@@ -21,7 +21,7 @@ const page = async () => {
     const session = await getServerSession( authOptions )
     const user = await USER.findOne({ email : session?.user?.email })
     
-    if ( !session || user.role === ROLE.ADMIN ) redirect("/")
+    if ( !session || !user || user.role === ROLE.ADMIN ) redirect("/")
 
     return (<AddTrustessPage />);
 };

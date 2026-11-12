@@ -1,3 +1,4 @@
+import { isValidId } from "@/utils/isValidId";
 import Ceremony from "@/models/cermony";
 import Zekr from "@/models/zekr";
 import CeremonyDetailsPage from "@/template/CeremonyDetailsPage";
@@ -7,10 +8,11 @@ import connectDB from "@/utils/connectDB";
 import { Metadata } from "next";
 
 // متد برای تولید متادیتا دینامیک
-export async function generateMetadata({ params: { ceromonyId } }: any): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { ceromonyId } = await params;
   await connectDB();
 
-  const ceremony = await Ceremony.findOne({ _id: ceromonyId });
+  const ceremony = (isValidId(ceromonyId) ? await Ceremony.findOne({ _id: ceromonyId }) : null);
 
   if (!ceremony) {
     return {
@@ -28,16 +30,17 @@ export async function generateMetadata({ params: { ceromonyId } }: any): Promise
   };
 }
 
-const page = async ({ params: { ceromonyId } }: any) => {
+const page = async ({ params }: any) => {
+  const { ceromonyId } = await params;
   
   await connectDB();
 
-  const ceremony = await Ceremony.findOne({ _id: ceromonyId });
+  const ceremony = (isValidId(ceromonyId) ? await Ceremony.findOne({ _id: ceromonyId }) : null);
 
   if (!ceremony) {
     return (
-      <div className="flex items-center justify-center h-[500px]">
-        <h3 className="font-bold text-2xl border-b-4 border-secondary-red-2 py-2">
+      <div className="state">
+        <h3 className="state-title">
           {ERROR.CEREMONY_DONT_EXIST}
         </h3>
       </div>

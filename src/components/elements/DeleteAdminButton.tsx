@@ -27,7 +27,7 @@ const DeleteAdminButton = ({ _id }:any) => {
     
     return (
         <div className="flex items-center">
-            <button onClick={ deleteHandler } className=" cursor-pointer text-secondary-red-3 md:text-lg "><IoTrashOutline /></button>
+            <button type="button" onClick={ deleteHandler } className="icon-btn icon-btn-sm icon-btn-danger" aria-label="حذف"><IoTrashOutline aria-hidden /></button>
             <Toaster />
         </div>
     );

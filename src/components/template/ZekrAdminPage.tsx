@@ -6,16 +6,16 @@ import ZekrAdminCart from "../constants/ZekrAdminCart";
 
 const ZekrAdminPage = ({zekr}:any) => {
     return (
-        <div className="py-4 px-5">
-            <div className="flex justify-between items-center" >
-                <h1 className="font-bold md:text-lg" >ذکر ها:</h1>
-                <Link href="/admin-panel/zekr/add" className="px-2 py-1 text-sm md:text-base bg-primary-red-2 rounded-lg cursor-pointer text-text-dark" >افزودن ذکر</Link>
+        <div className="p-5 md:p-8">
+            <div className="toolbar !mb-0" >
+                <h1 className="text-xl font-extrabold md:text-2xl" >ذکر ها</h1>
+                <Link href="/admin-panel/zekr/add" className="btn btn-primary btn-sm" >افزودن ذکر</Link>
             </div>
-            <div className="flex flex-col gap-y-2 mt-4" >
+            <div className="mt-6 grid gap-2" >
                 {   
                     zekr.length ? 
                     zekr?.map( (zkr : Zekr , index: number)  => (<ZekrAdminCart key={index}  zekr={zkr} />) ) 
-                    : <p>{ERROR.NO_ZEKR}</p>
+                    : <p className="empty">{ERROR.NO_ZEKR}</p>
                 }
             </div>
         </div>

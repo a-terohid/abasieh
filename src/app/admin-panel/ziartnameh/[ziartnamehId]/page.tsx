@@ -1,21 +1,24 @@
+import { toPlain } from "@/utils/toPlain";
+import { isValidId } from "@/utils/isValidId";
 import Ziartnameh from "@/models/ziaratnameh";
 import ZiartnamehDetailsPage from "@/template/ZiartnamehDetailsPage";
 import { ERROR } from "@/types/enums";
 import connectDB from "@/utils/connectDB";
 
-const page = async ({ params : {ziartnamehId}}:any) => {
+const page = async ({ params }: any) => {
+  const { ziartnamehId } = await params;
 
     await connectDB()
     
-    const ziartnameh = await Ziartnameh.findOne({ _id : ziartnamehId })
+    const ziartnameh = (isValidId(ziartnamehId) ? await Ziartnameh.findOne({ _id: ziartnamehId }) : null)
     
     if( !ziartnameh ) {
-        return( <div className='flex items-center justify-center h-[500px]' >
-                    <h3 className='font-bold text-2xl border-b-4 border-secondary-red-2 py-2' >{ERROR.ZIARTNAMEH_DONT_EXIST}</h3>
+        return( <div className='state' >
+                    <h3 className='state-title' >{ERROR.ZIARTNAMEH_DONT_EXIST}</h3>
                 </div>)
     }
     
-    return ( <ZiartnamehDetailsPage data={ziartnameh} admin={true} /> );
+    return ( <ZiartnamehDetailsPage data={toPlain(ziartnameh)} admin={true} /> );
 };
 
 export default page;

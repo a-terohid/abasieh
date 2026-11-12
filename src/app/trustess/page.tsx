@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import Save from '@/models/save';
 import TrusstesPage from '@/template/TrusstesPage';
 import connectDB from '@/utils/connectDB';
@@ -17,9 +18,9 @@ const page = async () => {
     await connectDB()
 
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const Trustees = sortTrustees(save.Trustees)
+    const Trustees = sortTrustees(save?.Trustees ?? [])
 
-    return ( <TrusstesPage Trustees={Trustees} /> );
+    return ( <TrusstesPage Trustees={toPlain(Trustees)} /> );
 };
 
 export default page;

@@ -1,8 +1,8 @@
+import { englishToPersianNumber } from '@/utils/englishToPersianNumber';
 
 import Link from "next/link";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import DeleteZekrButton from "../elements/DeleteZekrButton";
-import { useState } from "react";
 import ZekrtextSection from "@/module/ZekrtextSection";
 
 
@@ -13,36 +13,36 @@ const ZekrDetailspage = ({zekr , admin}:any) => {
     const route = admin ? "/admin-panel/zekr" : "/zekr"
 
     return (
-        <div className=" container my-5 md:my-8 ">
-            <div className="bg-background-light-2 dark:bg-background-dark-2  rounded-lg py-4 lg:py-6 px-5 lg:px-8" >
-                <div>
-                    <div className='flex flex-row items-center justify-between'>
-                        <h1 className=" font-bold md:text-2xl text-lg">{Title}</h1>
-                        <Link className='flex items-center cursor-pointer w-fit hover:text-primary-red-4 text-primary-red-3 ' href={ route }>ذکر ها<MdOutlineKeyboardArrowLeft/></Link>
-                    </div>
-                    <p className="mt-3 font-bold " >شاعر: <span className="font-normal mr-2">{Author}</span></p>
-                    <p className="mt-3 font-bold " >سال: <span className="font-normal mr-2">{Year}</span></p>
-                </div>
+        <article className={admin ? "p-5 md:p-8" : "shell page"}>
+            <div className="reader">
+                <nav aria-label="مسیر" className="mb-6">
+                    <Link className='link-arrow text-sm' href={ route }>ذکرها<MdOutlineKeyboardArrowLeft aria-hidden /></Link>
+                </nav>
+                <header className="grid gap-4 border-b border-line pb-6 text-center">
+                    <span className="eyebrow justify-self-center">ذکر سقایی</span>
+                    <h1 className="page-title">{Title}</h1>
+                    <dl className="meta-list justify-center">
+                        <div><dt>شاعر:</dt><dd>{Author}</dd></div>
+                        <div><dt>سال:</dt><dd className="nums">{englishToPersianNumber(String(Year ?? ""))}</dd></div>
+                    </dl>
+                </header>
                 {
-                    Voice ? <div className='mt-7' >
-                        <h2 className=" font-bold md:text-2xl text-lg">فایل صوتی {Title}:</h2>
-                        <div className='flex items-center justify-center mt-7' >
-                            <audio src={`/uploads/voices/${Voice}`} controls />
-                        </div>
-                    </div> : null
+                    Voice ? <section className='mt-8 card p-4 sm:p-5' aria-label={`فایل صوتی ${Title}`} >
+                        <h2 className="mb-3 text-sm font-bold text-ink-subtle">فایل صوتی</h2>
+                        <audio className="w-full" src={`/uploads/voices/${Voice}`} controls preload="none" />
+                    </section> : null
                 }
-                <div className='mt-7'>
-                    <h1 className=" font-bold md:text-2xl text-lg">متن ذکر:</h1>
+                <section className='mt-10' aria-label="متن ذکر">
                     <ZekrtextSection text={Zekr_Text} />
-                </div>
+                </section>
                 {
-                    admin ? <div className='mt-6 flex gap-x-3 items-center justify-center'>
+                    admin ? <div className='mt-10 flex flex-wrap items-center justify-center gap-3 border-t border-line pt-6'>
+                        <Link href={`/admin-panel/zekr/edit/${_id}`} className="btn btn-primary btn-sm">ویرایش ذکر</Link>
                         <DeleteZekrButton admin={true} _id={_id} />
-                        <Link href={`/admin-panel/zekr/edit/${_id}`} className=" bg-primary-green-1 text-white rounded w-fit py-2 px-3 text-sm cursor-pointer">ویرایش ذکر</Link>
                     </div> : null
                 }
             </div>
-        </div>
+        </article>
     );
 };
 

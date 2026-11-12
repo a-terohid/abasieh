@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import Zekr from '@/models/zekr';
 import ZekrAdminPage from '@/template/ZekrAdminPage';
 import connectDB from '@/utils/connectDB';
@@ -17,7 +18,7 @@ const page = async () => {
 
     const zekrha = await Zekr.find()
 
-    return ( <ZekrAdminPage zekr={zekrha} /> );
+    return ( <ZekrAdminPage zekr={toPlain(zekrha)} /> );
 };
 
 export default page;

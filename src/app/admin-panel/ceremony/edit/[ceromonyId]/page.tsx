@@ -1,3 +1,5 @@
+import { toPlain } from "@/utils/toPlain";
+import { isValidId } from "@/utils/isValidId";
 import Ceremony from '@/models/cermony';
 import EditCeremonyPage from '@/template/EditCeremonyPage';
 import { ERROR } from '@/types/enums';
@@ -11,22 +13,23 @@ export const metadata: Metadata = {
     keywords: "پنل ادمین, ویرایش مراسم, مدیریت مراسم, هیئت سقایی عباسیه جولان, مراسم اهل بیت, متون مقدس",
 };
 
-const page = async ({ params: { ceromonyId } }: any) => {
+const page = async ({ params }: any) => {
+  const { ceromonyId } = await params;
   
     await connectDB();
   
-    const ceremony = await Ceremony.findOne({ _id: ceromonyId });
+    const ceremony = (isValidId(ceromonyId) ? await Ceremony.findOne({ _id: ceromonyId }) : null);
   
     if (!ceremony) {
       return (
-        <div className="flex items-center justify-center h-[500px]">
-          <h3 className="font-bold text-2xl border-b-4 border-secondary-red-2 py-2">
+        <div className="state">
+          <h3 className="state-title">
             {ERROR.CEREMONY_DONT_EXIST}
           </h3>
         </div>
       );
     }
-    return ( <EditCeremonyPage ceremony={ceremony} /> );
+    return ( <EditCeremonyPage ceremony={toPlain(ceremony)} /> );
 };
 
 export default page;

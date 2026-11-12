@@ -1,33 +1,35 @@
 import { adminLayoutProps } from "@/types/types";
-import connectDB from "@/utils/connectDB";
-import { authOptions } from "../lib/auth";
-import { getServerSession } from "next-auth";
-import USER from "@/models/user";
 import { BsPersonCircle } from "react-icons/bs"
 import { ROLE } from "@/types/enums";
-import Link from "next/link";
+import AdminNavLink from "./AdminNavLink";
 
 const AdminLayout = async ({ children , role , email }: adminLayoutProps ) => {
 
     return (
-        <div className=' container flex flex-col lg:flex-row lg:gap-x-8 lg:gap-y-0 gap-y-6 mt-6 pb-10 ' >
-            <div className='flex overflow-auto gap-x-2 lg:flex-col lg:gap-y-3 h-fit lg:w-fit text-text-dark lg:min-w-[248px] py-2 lg:py-4 lg:px-4 rounded-xl shadow-xl bg-secondary-green-2' >
-                <div className='lg:flex hidden flex-col items-center border-b-2 pb-3' >
-                    <BsPersonCircle className=" text-4xl mb-2 " />
-                    <p className=' mb-3' >{ email }</p>
-                    { role == ROLE.ADMIN ? <p className=' px-2 font-bold bg-[#88d4ab] text-[#14746f] rounded-md'>admin</p> : null }
-                    { role == ROLE.OWNER ? <p className=' px-2 font-bold bg-secondary-red-4 text-secondary-red-2 rounded-md' >owner</p> : null }
+        <div className='shell flex flex-col gap-6 py-6 lg:flex-row lg:items-start lg:gap-8 lg:py-10' >
+            <aside className='lg:sticky lg:top-24 lg:w-64 lg:shrink-0' aria-label="منوی پنل مدیریت">
+                <div className='card overflow-hidden'>
+                    <div className='hidden items-center gap-3 border-b border-line p-4 lg:flex' >
+                        <BsPersonCircle aria-hidden className="shrink-0 text-3xl text-ink-subtle" />
+                        <div className="min-w-0">
+                            <p dir="ltr" className='truncate text-end text-sm font-semibold' title={email}>{ email }</p>
+                            { role == ROLE.ADMIN ? <span className='badge badge-accent mt-1'>admin</span> : null }
+                            { role == ROLE.OWNER ? <span className='badge badge-brass mt-1' >owner</span> : null }
+                        </div>
+                    </div>
+                    <nav className='flex gap-1 overflow-x-auto p-2 lg:flex-col lg:overflow-visible'>
+                        { role == ROLE.OWNER ? <AdminNavLink href="/admin-panel/admins" >مدیرها</AdminNavLink> : null }
+                        { role == ROLE.OWNER ? <AdminNavLink href="/admin-panel/trustees" >هیئت امنا</AdminNavLink> : null }
+                        <AdminNavLink href="/admin-panel/ziartnameh" >زیارت‌نامه‌ها</AdminNavLink>
+                        <AdminNavLink href="/admin-panel/year" >سال‌ها</AdminNavLink>
+                        <AdminNavLink href="/admin-panel/zekr" >ذکرها</AdminNavLink>
+                        <AdminNavLink href="/admin-panel/blogs" >مقاله‌ها</AdminNavLink>
+                        <AdminNavLink href="/admin-panel/ceremony" >مراسم‌ها</AdminNavLink>
+                        <AdminNavLink href="/admin-panel/oldSlaves" >پیرغلام‌ها</AdminNavLink>
+                    </nav>
                 </div>
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/admins" >مدیر ها</Link> : null }
-                { role == ROLE.OWNER ? <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/trustees" >هیئت امنا</Link> : null }
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ziartnameh" >زیارت‌ نامه ها</Link>
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/year" >سال ها</Link>
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/zekr" >ذکر ها</Link>
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/blogs" >مقاله ها</Link>
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/ceremony" >مراسم ها</Link>
-                <Link className={ " w-fit px-3 py-1 rounded-lg text-sm lg:text-base flex gap-x-1 items-center whitespace-nowrap" } href="/admin-panel/oldSlaves" >پیر غلام ها</Link>
-            </div>
-            <div className='w-full rounded-xl shadow-xl bg-background-light-2 dark:bg-background-dark-5' >{ children }</div>
+            </aside>
+            <section className='card min-w-0 flex-1' >{ children }</section>
         </div>
     );
 };

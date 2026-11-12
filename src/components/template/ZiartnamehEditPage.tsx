@@ -74,11 +74,11 @@ const ZiartnamehEditPage = ({ziartnameh}:any) => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-                <h1 className="font-bold text-xl" > ویرایش {Title} :</h1>
+                <h1 className="text-xl font-extrabold md:text-2xl" >ویرایش {Title}</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5 " >
+            <form className="form mt-6" >
                     <Input
                         value={ data.Title }
                         name= "Title"
@@ -103,11 +103,11 @@ const ZiartnamehEditPage = ({ziartnameh}:any) => {
                             Voice={ VoiceEdite }
                             ResetVoice = { ResetVoice }
                             textarea = {false} />
-                        {VoiceEdite ? <button className=" bg-primary-red-1 flex flex-row-reverse gap-x-3 items-center justify-center text-white w-fit rounded px-3 py-2  " onClick={ResetVoice} >بارگدازی مجدد<IoReload/></button> : null }
+                        {VoiceEdite ? <button className="btn btn-secondary btn-sm w-fit" onClick={ResetVoice} >بارگذاری مجدد<IoReload/></button> : null }
 
                     {
                         loading ? <Loader /> :
-                            <button onClick={editHandler} className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >ویرایش</button>
+                            <button onClick={editHandler} className="btn btn-primary btn-block btn-block-md-auto" >ویرایش</button>
                     }
              </form>
                 <Toaster />

@@ -20,6 +20,8 @@ export type InputType = {
     textarea: boolean,
     Voice ?: any,
     ResetVoice ?: Function
+    placeholder ?: string,
+    inputMode ?: "text" | "numeric" | "email" | "tel",
 }
 
 export type TextZiartnamehInput = { 

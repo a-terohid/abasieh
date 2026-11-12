@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import connectDB from "@/utils/connectDB";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -21,9 +22,9 @@ const page = async () => {
     if ( !session ) redirect("/")
 
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const Years = save.Years
+    const Years = save?.Years ?? []
 
-    return ( <AddZekrPage years={Years} /> );
+    return ( <AddZekrPage years={toPlain(Years)} /> );
 };
 
 export default page;

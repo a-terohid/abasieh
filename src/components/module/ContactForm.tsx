@@ -59,8 +59,9 @@ const ContactForm = () => {
     }
 
     return (
-        <div className="px-5 py-4 dark:bg-background-dark-5 bg-background-light-1 rounded-lg  bg-Dark text-f6  shadow-md mt-4 " >
-            <form  className="flex flex-col gap-y-6 my-2  " >
+        <div>
+            <form  className="grid gap-5" >
+                    <div className="grid gap-5 sm:grid-cols-2">
                     <Input
                         value={ Name }
                         name= "Name"
@@ -75,6 +76,7 @@ const ContactForm = () => {
                         label= "ایمیل:"
                         type = "text"
                         textarea = {false} />
+                    </div>
                     <Input 
                         value={ Subject }
                         name="Subject"
@@ -90,8 +92,8 @@ const ContactForm = () => {
                         type = "text"
                         textarea = {true} />
                     {
-                        loading ? <Loader /> :
-                            <button type="submit" onClick={ sendHandler } className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >ارسال</button>
+                        loading ? <div><Loader /></div> :
+                            <div><button type="submit" onClick={ sendHandler } className="btn btn-primary btn-block btn-block-md-auto" >ارسال پیام</button></div>
                     }
                 </form>
             <Toaster />

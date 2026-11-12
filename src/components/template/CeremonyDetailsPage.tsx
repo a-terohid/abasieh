@@ -2,8 +2,7 @@ import Link from "next/link";
 import DeleteCeremonyButton from "../elements/DeleteCeremonyButton";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import Slider from "@/module/Slider";
-import jalaali from 'jalaali-js';
-import { englishToPersianNumber } from "@/utils/englishToPersianNumber";
+import { formatJalaliLong } from '@/utils/jalali';
 
 
 const CeremonyDetailsPage = ({ceremony , admin}:any) => {
@@ -13,35 +12,31 @@ const CeremonyDetailsPage = ({ceremony , admin}:any) => {
     const { title , description , images , _id , date } = data;
 
     const route = admin ? "/admin-panel/ceremony" : "/ceromony"
-
-    const DATE = new Date(date);
-    const year = DATE.getUTCFullYear();
-    const month = DATE.getUTCMonth() + 1;
-    const day = DATE.getUTCDate();
-
-    const jalaliDate = jalaali.toJalaali(new Date(year, month - 1, day));
-    const shamDATE = `${jalaliDate.jy}/${jalaliDate.jm}/${jalaliDate.jd}`
+    // Jalali date in Tehran time (avoids the previous UTC day-shift).
+    const shamDATE = formatJalaliLong(date)
 
     return (
-        <div className=" container my-5 md:my-8 ">
-            <div className="bg-background-light-2 dark:bg-background-dark-2  rounded-lg py-4 lg:py-6 px-5 lg:px-8" >
-                <div>
-                    <div className='flex flex-row items-end mb-5 justify-end'>
-                        <Link className='flex items-center cursor-pointer w-fit hover:text-primary-red-4 text-primary-red-3 ' href={ route }> مراسم ها<MdOutlineKeyboardArrowLeft/></Link>
-                    </div>
-                    <Slider images={images} title={title} />
-                    <h1 className=" font-bold md:text-2xl mt-8 mb-4 text-lg">{title}</h1>
-                    <h3 className='text-xs lg:text-sm mt-1 mb-2 text-primary-red-2 font-bold'>{englishToPersianNumber(shamDATE)}</h3>
-                    <p className="text-justify mt-3 indent-3" >{description}</p>
+        <article className={admin ? "p-5 md:p-8" : "shell page"}>
+            <div className="mx-auto max-w-4xl">
+                <nav aria-label="مسیر" className="mb-6">
+                    <Link className='link-arrow text-sm' href={ route }>مراسم‌ها<MdOutlineKeyboardArrowLeft aria-hidden /></Link>
+                </nav>
+                <header className="mb-8 grid gap-3">
+                    <time className='text-sm font-semibold text-brass nums'>{shamDATE}</time>
+                    <h1 className="page-title">{title}</h1>
+                </header>
+                <Slider images={images} title={title} />
+                <div className="mt-10 border-t border-line pt-8">
+                    <p className="prose-fa" >{description}</p>
                 </div>
                 {
-                    admin ? <div className='mt-6 flex gap-x-3 items-center justify-center'>
+                    admin ? <div className='mt-10 flex flex-wrap items-center justify-center gap-3 border-t border-line pt-6'>
+                        <Link href={`/admin-panel/ceremony/edit/${_id}`} className="btn btn-primary btn-sm">ویرایش مراسم</Link>
                         <DeleteCeremonyButton admin={true} _id={_id} />
-                        <Link href={`/admin-panel/ceremony/edit/${_id}`} className=" bg-primary-green-1 text-white rounded w-fit py-2 px-3 text-sm cursor-pointer">ویرایش مراسم</Link>
                     </div> : null
                 }
             </div>
-        </div>
+        </article>
     );
 };
 

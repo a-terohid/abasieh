@@ -7,6 +7,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Input from "@/module/Input";
 import Loader from "@/module/Loader";
 import { ERROR } from "@/types/enums";
+import { currentJalaliYear } from "@/utils/jalali";
 
 const AddAdminPage = () => {
 
@@ -50,22 +51,24 @@ const AddAdminPage = () => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-                <h1 className="font-bold text-xl" >افزودن سال</h1>
+                <h1 className="text-xl font-extrabold md:text-2xl" >افزودن سال</h1>
             </div>
-            <form  className="flex flex-col gap-y-6 mt-5  " >
+            <form  className="form mt-6" >
                     <Input 
                         value={ Year }
                         name= "year"
                         changeHandler = {changeHandler}
-                        label= "سال:"
+                        label= "سال (هجری شمسی):"
                         type = "text"
+                        inputMode = "numeric"
+                        placeholder = {`مثلاً ${currentJalaliYear()}`}
                         textarea = {false} />
                    
                     {
                         loading ? <Loader /> :
-                            <button type="submit" onClick={ signUpHandler } className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >افرودن</button>
+                            <button type="submit" onClick={ signUpHandler } className="btn btn-primary btn-block btn-block-md-auto" >افزودن</button>
                     }
                 </form>
                 <Toaster />

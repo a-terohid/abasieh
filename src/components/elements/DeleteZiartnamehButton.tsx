@@ -44,7 +44,7 @@ const DeleteZiartnamehButton = ({ _id , admin }:any) => {
     return (
         <div className="flex items-center">
           {  loading ? <Loader /> :           
-            <button onClick={ deleteHandler } className={` cursor-pointer flex gap-x-2 text-secondary-red-3 ${admin ? " bg-primary-red-1 w-fit text-white rounded px-4 text-sm py-2":"md:text-lg"} `}>{admin ? "حذف زیارت نامه": null}<IoTrashOutline /></button>
+            <button type="button" onClick={ deleteHandler } className={admin ? "btn btn-danger btn-sm" : "icon-btn icon-btn-sm icon-btn-danger"} aria-label={admin ? undefined : "حذف"}>{admin ? "حذف زیارت نامه": null}<IoTrashOutline aria-hidden /></button>
           }         
           <Toaster />
         </div>

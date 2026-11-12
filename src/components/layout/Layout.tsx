@@ -4,9 +4,10 @@ import React from 'react';
 
 const Layout = ({ children } : {children: React.ReactNode}) => {
     return (
-        <div className="bg-background-light-1 dark:bg-background-dark-1 text-text-light dark:text-text-dark  font-Peyda" >
+        <div className="flex min-h-dvh flex-col bg-bg text-ink font-sans">
+            <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 btn btn-primary btn-sm">پرش به محتوا</a>
             <Navbar />
-            <div className=" min-h-[750px]  py-[65px] lg:py-[85px]" >{ children }</div>
+            <main id="main" className="flex-1">{ children }</main>
             <Footer />
         </div>
     );

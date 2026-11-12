@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import Ziartnameh from '@/models/ziaratnameh';
 import ZiaratnamehPage from '@/template/ZiaratnamehPage';
 import connectDB from '@/utils/connectDB';
@@ -21,7 +22,7 @@ const page = async () => {
 
     const ziartnameha = await Ziartnameh.find()
 
-    return ( <ZiaratnamehPage ziartnameha={ziartnameha} /> );
+    return ( <ZiaratnamehPage ziartnameha={toPlain(ziartnameha)} /> );
 };
 
 export default page;

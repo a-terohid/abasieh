@@ -1,22 +1,17 @@
 import Link from 'next/link';
-import React from 'react';
-import { BiEdit } from 'react-icons/bi';
-import { FaRegEye } from 'react-icons/fa';
+import { FaRegEye } from "react-icons/fa";
+import { BiEdit } from "react-icons/bi";
 import DeleteCeremonyButton from '../elements/DeleteCeremonyButton';
 
 const CeremonyAdminCard = ({ceremony}:any) => {
-
-    const { title , _id } = ceremony
+    const { title , _id} = ceremony
 
     return (
-        <div className="dark:bg-background-dark-3 bg-background-light-1 px-3 py-2 rounded-lg flex items-center justify-between" >
-            <div className="flex items-center gap-x-3 text-sm md:text-base">
-                <h3>نام:</h3>
-                <p>{title}</p>
-            </div>
-            <div className="flex gap-x-2 items-center">
-                <Link className=" cursor-pointer text-primary-green-2 dark:text-primary-green-4 " href={`/admin-panel/ceremony/${_id}`}><FaRegEye /></Link>
-                <Link className=" cursor-pointer text-primary-green-2 dark:text-primary-green-4 " href={`/admin-panel/ceremony/edit/${_id}`}><BiEdit /></Link>
+        <div className="list-row" >
+            <p className="min-w-0 flex-1 truncate ps-2 text-[0.9375rem] font-semibold" title={title}><span className="sr-only">نام: </span>{title}</p>
+            <div className="flex shrink-0 items-center gap-0.5">
+                <Link className="icon-btn icon-btn-sm icon-btn-accent" aria-label="مشاهده" href={`/admin-panel/ceremony/${_id}`}><FaRegEye aria-hidden /></Link>
+                <Link className="icon-btn icon-btn-sm icon-btn-accent" aria-label="ویرایش" href={`/admin-panel/ceremony/edit/${_id}`}><BiEdit aria-hidden /></Link>
                 <span><DeleteCeremonyButton _id={ _id }   /></span>
             </div>
         </div>

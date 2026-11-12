@@ -22,8 +22,8 @@ const layout = async ({ children }: {children: React.ReactNode}) => {
     const user = await USER.findOne({ email : session?.user?.email })
 
     if( !user ) {
-        return( <div className='flex items-center justify-center h-[500px]' >
-            <h3 className='font-bold text-2xl border-b-4 border-secondary-red-2 py-2' >{ERROR.PROBLEM}</h3>
+        return( <div className='state' >
+            <h3 className='state-title' >{ERROR.PROBLEM}</h3>
         </div> )
     }
 

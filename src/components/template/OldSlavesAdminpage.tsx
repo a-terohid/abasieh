@@ -8,16 +8,16 @@ import OldSlavesCart from '../constants/OldSlavesCart';
 const OldSlavesAdminpage = ({OldSlaves}:any) => {
 
     return (
-        <div className="py-4 px-5">
-            <div className="flex justify-between items-center" >
-                <h1 className="font-bold md:text-lg" >  پیرغلامان:</h1>
-                <Link href="/admin-panel/oldSlaves/add" className="px-2 py-1 text-sm md:text-base bg-primary-red-2 rounded-lg cursor-pointer text-text-dark" >افزودن پیر غلام</Link>
+        <div className="p-5 md:p-8">
+            <div className="toolbar !mb-0" >
+                <h1 className="text-xl font-extrabold md:text-2xl" >پیرغلامان</h1>
+                <Link href="/admin-panel/oldSlaves/add" className="btn btn-primary btn-sm" >افزودن پیر غلام</Link>
             </div>
-            <div className="flex flex-wrap mb-5 items-center justify-center gap-y-4 md:gap-6 lg:gap-8 mt-8" >
+            <div className="mt-6 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 xl:grid-cols-3" >
                 {   
                     OldSlaves.length ? 
                     OldSlaves?.map( (OLS : OLD_SLAVES , index: number)  => (<OldSlavesCart key={index} OLS={JSON.stringify(OLS)} admin={true} />) ) 
-                    : <p>{ERROR.NO_OLD_SLAVES}</p>
+                    : <p className="empty">{ERROR.NO_OLD_SLAVES}</p>
                 }
             </div>
         </div>

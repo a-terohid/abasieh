@@ -2,13 +2,14 @@
 
 import Input from "@/module/Input";
 import { TextZiartnamehInput, Ziartnameh_text_part } from "@/types/types";
+import { FiPlus, FiTrash2 } from "react-icons/fi";
 
 
 
 const ZiatnamehTextInput = ({data , setData} :TextZiartnamehInput ) => {
 
     const { Text } = data;
-    
+
     const changeHandler = (e : any, index : number) => {
         const { name, value } = e.target;
         const key = name as keyof Ziartnameh_text_part;
@@ -18,7 +19,7 @@ const ZiatnamehTextInput = ({data , setData} :TextZiartnamehInput ) => {
             [key]: value
         };
         setData({ ...data, Text: newText });
-        
+
     };
 
     const addHnadler = (event: any) => {
@@ -31,7 +32,7 @@ const ZiatnamehTextInput = ({data , setData} :TextZiartnamehInput ) => {
           });
     }
 
-    const deleteHandler = (index : number) => { 
+    const deleteHandler = (index : number) => {
         const newText = [...Text];
         newText.splice(index, 1);
         setData({ ...data, Text: newText });
@@ -39,36 +40,39 @@ const ZiatnamehTextInput = ({data , setData} :TextZiartnamehInput ) => {
 
 
     return (
-        <div>
+        <div className="grid gap-4">
             {
-                Text.map( ( text, index ) => <div className="flex flex-col gap-y-3 mb-4"  key={ index } >
-                    <Input 
+                Text.map( ( text, index ) => <fieldset className="repeat-block"  key={ index } >
+                    <legend className="badge badge-accent">بخش {index + 1}</legend>
+                    <Input
                         value={ text.Original }
                         name="Original"
                         changeHandler = {(e:any) => changeHandler(e, index)}
-                        label= {` متن عربی - بخش ${index + 1}`}
+                        label= {`متن عربی — بخش ${index + 1}`}
                         type = "text"
                         textarea = {true} />
-                    <Input 
+                    <Input
                         value={ text.Translation }
                         name="Translation"
                         changeHandler = {(e:any) => changeHandler(e, index)}
-                        label= {` ترجمه فارسی - بخش ${index + 1}`}
+                        label= {`ترجمه فارسی — بخش ${index + 1}`}
                         type = "text"
                         textarea = {true} />
-                    <Input 
+                    <Input
                         value={ text.Supplement || "" }
                         name="Supplement"
                         changeHandler = {(e:any) => changeHandler(e, index)}
-                        label= {` توضیحات اضافی - بخش ${index + 1}`}
+                        label= {`توضیحات اضافی — بخش ${index + 1}`}
                         type = "text"
                         textarea = {true} />
                     <div>
-                        <p className=" bg-primary-red-3 text-white rounded w-fit py-2 px-3  cursor-pointer"  onClick={ () => deleteHandler( index ) } >{`حذف بخش ${index + 1}`}</p>
+                        <button type="button" className="btn btn-ghost btn-sm text-danger hover:!bg-danger-soft hover:!text-danger" onClick={ () => deleteHandler( index ) } ><FiTrash2 aria-hidden />{`حذف بخش ${index + 1}`}</button>
                     </div>
-                </div> )
+                </fieldset> )
             }
-            <button onClick={ addHnadler } className=" bg-primary-green-1 text-white rounded md:w-1/2 py-2 px-3 cursor-pointer"  >افزودن بخش</button>
+            <div>
+                <button onClick={ addHnadler } className="btn btn-secondary"  ><FiPlus aria-hidden />افزودن بخش</button>
+            </div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from './Input';
+import { FiPlus, FiTrash2 } from 'react-icons/fi';
 
 const ZekrTextInout = ({data , setData,Str}:any) => {
 
@@ -15,29 +16,31 @@ const ZekrTextInout = ({data , setData,Str}:any) => {
         setData(newText); // استیت data را به‌روزرسانی می‌کنیم
     };
 
-    const deleteHandler = (index: number) => { 
+    const deleteHandler = (index: number) => {
         const newText = [...data]; // کپی آرایه‌ی data
         newText.splice(index, 1); // حذف مقدار در ایندکس مشخص
         setData(newText); // به‌روزرسانی استیت data
     };
 
     return (
-        <div>
+        <div className="grid gap-3">
             {
-                data.map( ( text:string, index:number ) => <div className="flex flex-col gap-y-3 mb-4"  key={ index } >
+                data.map( ( text:string, index:number ) => <div className="repeat-block"  key={ index } >
                     <Input
                         value={ text }
                         name="Original"
                         changeHandler = {(e:any) => changeHandler(e, index)}
-                        label= {`  متن بند  ${Str} - مصراع ${index + 1}`}
+                        label= {`متن بند ${Str} — مصراع ${index + 1}`}
                         type = "text"
                         textarea = {false} />
                     <div>
-                        <p className=" bg-primary-red-3 text-white rounded w-fit py-2 px-3  cursor-pointer"  onClick={ () => deleteHandler( index ) } >{`حذف مصراع ${index + 1}`}</p>
+                        <button type="button" className="btn btn-ghost btn-sm text-danger hover:!bg-danger-soft hover:!text-danger" onClick={ () => deleteHandler( index ) } ><FiTrash2 aria-hidden />{`حذف مصراع ${index + 1}`}</button>
                     </div>
                 </div> )
             }
-            <button onClick={ addHandler } className=" bg-primary-green-1 text-white rounded md:w-1/2 py-2 px-3 cursor-pointer"  >افزودن مصراع</button>
+            <div>
+                <button onClick={ addHandler } className="btn btn-secondary"  ><FiPlus aria-hidden />افزودن مصراع</button>
+            </div>
         </div>
     );
 };

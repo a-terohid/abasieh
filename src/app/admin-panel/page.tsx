@@ -12,8 +12,10 @@ const page = async () => {
     if ( !session ) redirect("/")
 
     return (
-        <div>
-            paned admin
+        <div className="state">
+            <span className="state-mark" aria-hidden>✦</span>
+            <h1 className="state-title">پنل ادمین</h1>
+            <p className="state-text">برای مدیریت محتوا، یکی از بخش‌های منو را انتخاب کنید.</p>
         </div>
     );
 };

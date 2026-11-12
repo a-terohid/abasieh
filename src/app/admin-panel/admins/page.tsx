@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import USER from '@/models/user';
 import AdminsPage from '@/template/AdminsPage';
 import { ERROR, ROLE } from '@/types/enums';
@@ -23,15 +24,15 @@ const page = async () => {
 
     const user = await USER.findOne({ email : session?.user?.email })
 
-    if( user.role == ROLE.ADMIN  ) {
-        return( <div className='flex items-center justify-center h-[500px]' >
-            <h3 className='font-bold text-2xl border-b-4 border-secondary-red-2 py-2' >{ ERROR.ACCESS_DENIED }</h3>
+    if( !user || user.role == ROLE.ADMIN  ) {
+        return( <div className='state' >
+            <h3 className='state-title' >{ ERROR.ACCESS_DENIED }</h3>
         </div> )
     }
 
     const admins = await USER.find({ role : ROLE.ADMIN })
 
-    return ( <AdminsPage admins={admins} /> );
+    return ( <AdminsPage admins={toPlain(admins)} /> );
 };
 
 export default page;

@@ -1,3 +1,4 @@
+import { toPlain } from "@/utils/toPlain";
 import Save from "@/models/save";
 import OldSlavesAdminpage from "@/template/OldSlavesAdminpage";
 import connectDB from "@/utils/connectDB";
@@ -15,9 +16,9 @@ const page = async () => {
     await connectDB()
 
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const OldSlaves = save.OldSlaves
+    const OldSlaves = save?.OldSlaves ?? []
 
-    return ( <OldSlavesAdminpage OldSlaves={OldSlaves} />);
+    return ( <OldSlavesAdminpage OldSlaves={toPlain(OldSlaves)} />);
 };
 
 export default page;

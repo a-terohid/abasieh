@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     keywords: "پنل ادمین, ویرایش عضو, هیئت امنا, هیئت سقایی عباسیه جولان, مدیریت اعضا",
 };
 
-const page = async ({ params: { trusteesId } }: any) => {
+const page = async ({ params }: any) => {
+  const { trusteesId } = await params;
 
 
     await connectDB();
@@ -24,17 +25,17 @@ const page = async ({ params: { trusteesId } }: any) => {
     const session = await getServerSession( authOptions )
     const user = await USER.findOne({ email : session?.user?.email })
     
-    if ( !session || user.role === ROLE.ADMIN ) redirect("/")
+    if ( !session || !user || user.role === ROLE.ADMIN ) redirect("/")
 
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const { Trustees } = save
+    const Trustees = save?.Trustees ?? []
     const trustess = Trustees.find((person : TRUSTEES_PERSONE) => person._id == trusteesId );
 
     
     if (!trustess) {
         return (
-            <div className="flex items-center justify-center h-[500px]">
-          <h3 className="font-bold text-2xl border-b-4 border-secondary-red-2 py-2">
+            <div className="state">
+          <h3 className="state-title">
             {ERROR.ZIARTNAMEH_DONT_EXIST}
           </h3>
         </div>

@@ -1,4 +1,4 @@
-"useclient"
+"use client"
 
 import Loader from '@/module/Loader';
 import { useRouter } from 'next/navigation';
@@ -42,7 +42,7 @@ const DeleteOldSlavesButton = ({_id}:any) => {
       return (
         <div className="flex items-center">
           {  loading ? <Loader /> :           
-            <button onClick={ deleteHandler } className={` cursor-pointer flex gap-x-2 text-secondary-red-3 md:text-lg `}><IoTrashOutline /></button>
+            <button type="button" onClick={ deleteHandler } className="icon-btn icon-btn-sm icon-btn-danger" aria-label="حذف"><IoTrashOutline aria-hidden /></button>
           }         
           <Toaster />
         </div>

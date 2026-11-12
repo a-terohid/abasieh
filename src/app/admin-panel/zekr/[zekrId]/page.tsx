@@ -1,17 +1,19 @@
+import { isValidId } from "@/utils/isValidId";
 import Zekr from "@/models/zekr";
 import ZekrDetailspage from "@/template/ZekrDetailspage";
 import { ERROR } from "@/types/enums";
 import connectDB from "@/utils/connectDB";
 
-const page = async ({ params : {zekrId}}:any) => {
+const page = async ({ params }: any) => {
+  const { zekrId } = await params;
 
     await connectDB()
     
-    const zekr = await Zekr.findOne({ _id : zekrId })
+    const zekr = (isValidId(zekrId) ? await Zekr.findOne({ _id: zekrId }) : null)
     
     if( !zekr ) {
-        return( <div className='flex items-center justify-center h-[500px]' >
-                    <h3 className='font-bold text-2xl border-b-4 border-secondary-red-2 py-2' >{ERROR.ZIARTNAMEH_DONT_EXIST}</h3>
+        return( <div className='state' >
+                    <h3 className='state-title' >{ERROR.ZIARTNAMEH_DONT_EXIST}</h3>
                 </div>)
     }
     

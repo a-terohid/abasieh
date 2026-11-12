@@ -102,11 +102,11 @@ const AddCeremony = () => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-                <h1 className="font-bold text-xl">افزودن مراسم</h1>
+                <h1 className="text-xl font-extrabold md:text-2xl">افزودن مراسم</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5">
+            <form className="form mt-6">
                 <Input
                     value={title}
                     name="title"
@@ -124,7 +124,7 @@ const AddCeremony = () => {
                     textarea={true}
                 />
                 <div style={{ direction: "rtl" }}>
-                    <p className="mb-2">تاریخ:</p>
+                    <p className="field-label mb-2">تاریخ</p>
                     <DatePicker
                         value={date}
                         onChange={dateHandler}
@@ -134,59 +134,59 @@ const AddCeremony = () => {
                     />
                 </div>
                 <div className="mt-3">
-                    <p className="mb-4">بنر مراسم:</p>
+                    <p className="field-label mb-3">بنر مراسم</p>
                     <input
                         type="file"
                         id="coverImageInput"
                         accept="image/*"
                         onChange={fileChangeHandler}
-                        className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1"
-                        style={{ display: 'none' }}
+                        className="sr-only"
+                        
                     />
-                    <label htmlFor="coverImageInput" className="bg-primary-green-1 text-white rounded md:w-1/2 py-2 px-3 cursor-pointer">
+                    <label htmlFor="coverImageInput" className="file-trigger">
                         {coverImage ? coverImage.name : "انتخاب تصویر کاور"}
                     </label>
                     {coverImagePreview && (
-                        <div className="relative mt-4">
+                        <div className="relative mt-4 w-fit">
                             <img
                                 src={coverImagePreview}
                                 alt="Cover Image Preview"
-                                className="w-56 hover:w-72 mt-5 object-cover rounded-lg"
+                                className="mt-4 h-40 w-56 rounded-xl border border-line object-cover"
                             />
-                            <button onClick={ResetCoverImage} className="absolute mt-2 mr-2 top-0 right-0 bg-primary-red-2 text-white rounded-full p-1"><RiDeleteBin2Line /></button>
+                            <button onClick={ResetCoverImage} className="absolute top-2 start-2 grid h-8 w-8 place-items-center rounded-full bg-surface/90 text-danger shadow-[var(--shadow-soft)]"><RiDeleteBin2Line /></button>
                         </div>
                     )}
                 </div>
                 <div className="mt-3">
-                <p className="mb-4">تصاویر مراسم:</p>
+                <p className="field-label mb-3">تصاویر مراسم</p>
                     <input
                         type="file"
                         id="imagesInput"
                         multiple
                         accept="image/*"
                         onChange={handleImageChange}
-                        className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1"
-                        style={{ display: 'none' }}
+                        className="sr-only"
+                        
                     />
-                    <label htmlFor="imagesInput" className="bg-primary-green-1 text-white rounded md:w-1/2 py-2 px-3 cursor-pointer">
+                    <label htmlFor="imagesInput" className="file-trigger">
                         {images.length > 0 ? `${images.length} تصویر انتخاب شده` : "انتخاب تصاویر"}
                     </label>
-                    <div className="flex flex-wrap gap-4 mt-5">
+                    <div className="mt-4 flex flex-wrap gap-4">
                         {imagePreviews.map((preview, index) => (
                             <div key={index} className="relative flex flex-wrap items-center justify-center">
                                 <img
                                     src={preview}
                                     alt={`Preview ${index}`}
-                                    className="w-56 hover:w-72 object-cover rounded-lg"
+                                    className="h-40 w-56 rounded-xl border border-line object-cover"
                                 />
-                                <button onClick={() => removeImage(index)} className="absolute top-0 right-0 bg-primary-red-2 text-white rounded-full mt-2 mr-2 p-1"><RiDeleteBin2Line /></button>
+                                <button onClick={() => removeImage(index)} className="absolute top-2 start-2 grid h-8 w-8 place-items-center rounded-full bg-surface/90 text-danger shadow-[var(--shadow-soft)]"><RiDeleteBin2Line /></button>
                             </div>
                         ))}
                     </div>
                     <div className="mt-5 mb-4">
                         {
                             loading ? <Loader /> :
-                                <button onClick={AddHandler} className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >افرودن</button>
+                                <button onClick={AddHandler} className="btn btn-primary btn-block btn-block-md-auto" >افزودن</button>
                         }
                     </div>
                 </div>

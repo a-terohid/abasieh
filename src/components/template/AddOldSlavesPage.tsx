@@ -72,11 +72,11 @@ const AddOldSlavesPage = () => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-                <h1 className="font-bold text-xl">افزودن پیر غلام</h1>
+                <h1 className="text-xl font-extrabold md:text-2xl">افزودن پیر غلام</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5">
+            <form className="form mt-6">
                 <Input
                     value={fullName}
                     name="fullName"
@@ -86,7 +86,7 @@ const AddOldSlavesPage = () => {
                     textarea={false} 
                 />
                 <div style={{ direction: "rtl" }}>
-                    <p className="mb-2">تاریخ:</p>
+                    <p className="field-label mb-2">تاریخ</p>
                     <DatePicker
                         value={date}
                         onChange={dateHandler}
@@ -106,18 +106,18 @@ const AddOldSlavesPage = () => {
                     textarea={false}
                 />
                 {previewImage && (
-                    <div className="flex flex-col gap-y-4">
+                    <div className="grid gap-3">
                         <p>پیش نمایش عکس:</p>
-                        <img src={previewImage} alt="Preview" className="w-40 h-40 rounded-lg shadow-lg object-cover" />
+                        <img src={previewImage} alt="Preview" className="h-40 w-40 rounded-xl border border-line object-cover" />
                     </div>
                 )}
                 {Voice && (
-                    <button className="bg-primary-red-1 flex flex-row-reverse gap-x-3 items-center justify-center text-white w-fit rounded px-3 py-2" onClick={ResetVoice}>
-                        بارگدازی مجدد<IoReload />
+                    <button className="btn btn-secondary btn-sm w-fit" onClick={ResetVoice}>
+                        بارگذاری مجدد<IoReload />
                     </button>
                 )}
                 {loading ? <Loader /> :
-                    <button onClick={AddHandler} className="bg-primary-red-1 text-white rounded md:w-1/2 py-2">
+                    <button onClick={AddHandler} className="btn btn-primary btn-block btn-block-md-auto">
                         افرودن
                     </button>
                 }

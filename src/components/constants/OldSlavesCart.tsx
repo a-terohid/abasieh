@@ -5,18 +5,19 @@ import profile from "@/public/img/profile.png";
 import { checkImageExists } from '@/utils/checkIMG';
 import Link from 'next/link';
 import { BiEdit } from 'react-icons/bi';
-import jalaali from 'jalaali-js';
+import { formatJalaliLong } from '@/utils/jalali';
 import DeleteOldSlavesButton from '../elements/DeleteOldSlavesButton';
-import { englishToPersianNumber } from '@/utils/englishToPersianNumber';
 
 const OldSlavesCart = ({ OLS , admin }: any) => {
     const { fullName, date , img, _id } = JSON.parse(OLS);
 
-    const IMG_SRC = `/uploads/images/oldSlaves/${img}`;
+    // No filename → use the placeholder directly instead of requesting the folder URL.
+    const IMG_SRC = img ? `/uploads/images/oldSlaves/${img}` : profile.src;
     const [imageSrc, setImageSrc] = useState(IMG_SRC);
 
     useEffect(() => {
         const checkImage = async () => {
+            if (IMG_SRC === profile.src) return;
             const exists = await checkImageExists(IMG_SRC);
             if (!exists) {
                 setImageSrc(profile.src);
@@ -25,32 +26,26 @@ const OldSlavesCart = ({ OLS , admin }: any) => {
 
         checkImage();
     }, [IMG_SRC]);
-
-
-    const DATE = new Date(date);
-    const year = DATE.getUTCFullYear();
-    const month = DATE.getUTCMonth() + 1;
-    const day = DATE.getUTCDate();
-
-    const jalaliDate = jalaali.toJalaali(new Date(year, month - 1, day));
-    const shamDATE = `${jalaliDate.jy}/${jalaliDate.jm}/${jalaliDate.jd}`
+    // Jalali date in Tehran time (avoids the previous UTC day-shift).
+    const shamDATE = formatJalaliLong(date)
 
     return (
-        <div className='px-4 py-5 bg-background-light-1 text-text-light rounded-xl shadow' >
-            <div>
-                <img className='w-52 h-52 rounded-xl shadow-lg'  src={imageSrc} alt={fullName} />
+        <article className='flex h-full flex-col items-center text-center' >
+            {/* Memorial portrait: muted, no hover effects. */}
+            <div className='niche aspect-[4/5] w-full max-w-[11rem] overflow-hidden border border-line bg-surface-2'>
+                <img className='h-full w-full object-cover text-[0px] grayscale-[65%] sepia-[15%]' src={imageSrc} alt={fullName} loading="lazy" />
             </div>
-            <div className='mt-4 flex flex-col items-center justify-center gap-y-2' >
-                <h1 className='font-bold' >{fullName}</h1>
-                <p className='flex gap-x-2'><span>تاریخ وفات: </span>{englishToPersianNumber(shamDATE)}</p>
+            <div className='mt-4 grid justify-items-center gap-1' >
+                <h3 className='text-base font-bold leading-7' >{fullName}</h3>
+                <p className='text-sm text-ink-subtle'><span>تاریخ وفات: </span><span className='nums'>{shamDATE}</span></p>
             </div>
             {
-                admin ? <div className="flex gap-x-2 mt-4 text-lg justify-center items-center">
-                <Link className=" cursor-pointer text-primary-green-2 dark:text-primary-green-4 " href={`/admin-panel/oldSlaves/edit/${_id}`}><BiEdit /></Link>
+                admin ? <div className="mt-3 flex items-center justify-center gap-1">
+                <Link className="icon-btn icon-btn-sm icon-btn-accent" aria-label={`ویرایش ${fullName}`} href={`/admin-panel/oldSlaves/edit/${_id}`}><BiEdit aria-hidden /></Link>
                 <span><DeleteOldSlavesButton _id={ _id }   /></span>
             </div> : null
             }
-        </div>
+        </article>
     );
 };
 

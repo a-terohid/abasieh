@@ -1,3 +1,4 @@
+import { englishToPersianNumber } from '@/utils/englishToPersianNumber';
 import React from 'react';
 
 const ZiartnamehTextCard = ({text , index}:any) => {
@@ -5,14 +6,14 @@ const ZiartnamehTextCard = ({text , index}:any) => {
     const { Original , Translation , Supplement ,  } = text
 
     return (
-        <div id={index} className='pt-7'>
-            <span className='text-xs text-text-dark px-2 py-1 bg-primary-red-3 rounded-2xl'>بخش {index+1}:</span>
-            <div className='mt-4'>
-                <p className='font-bold italic my-2 text-primary-green-2'>{Supplement}</p>
-                <p className='font-bold mb-3'>{Original}</p>
-                <p>{Translation}</p>
+        <section id={`section-${index + 1}`} className='scroll-mt-24 py-8 first:pt-2' aria-label={`بخش ${index + 1}`}>
+            <span className='badge badge-accent nums'>بخش {englishToPersianNumber(String(index+1))}</span>
+            <div className='mt-5 grid gap-4'>
+                { Supplement ? <p className='note'>{Supplement}</p> : null }
+                <p lang="ar" dir="rtl" className='text-arabic'>{Original}</p>
+                <p className='text-translation'>{Translation}</p>
             </div>
-        </div>
+        </section>
     );
 };
 

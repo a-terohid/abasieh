@@ -80,11 +80,11 @@ const TrustessEditpage = ({trustess}:any) => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-            <h1 className="font-bold text-xl" >ویرایش عضو</h1>
+            <h1 className="text-xl font-extrabold md:text-2xl" >ویرایش عضو</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5 " >
+            <form className="form mt-6" >
                     <Input
                         value={ fullName }
                         name= "fullName"
@@ -99,10 +99,10 @@ const TrustessEditpage = ({trustess}:any) => {
                         label= "شماره همراه:"
                         type = "text"
                         textarea = {false} />
-                    <div className="flex flex-col gap-y-2 ">
-                        <label>سمت:</label>
+                    <div className="field-group">
+                        <label className="field-label">سمت</label>
                         <select name="role" value={role} onChange={changeHandler}
-                            className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray  text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1" >
+                            className="field" >
                             <option value="انتخاب سمت">انتخاب سمت</option>
                             <hr />
                             <option value={TRUSTEES_ROLE.BOSS}>{TRUSTEES_ROLE.BOSS}</option>
@@ -110,13 +110,13 @@ const TrustessEditpage = ({trustess}:any) => {
                             <option value={TRUSTEES_ROLE.PLUS}>{TRUSTEES_ROLE.PLUS}</option>
                         </select>
                     </div>
-                    <div className="flex gap-x-2 items-center" >
+                    <div className="check" >
                         <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={handleCheckboxChange}
                         />
-                        <p>حدف و تغییر عکس</p>
+                        <p>حذف و تغییر عکس</p>
                     </div>
                     {
                         isChecked ? <div>
@@ -129,12 +129,12 @@ const TrustessEditpage = ({trustess}:any) => {
                                 Voice={ Voice }
                                 ResetVoice = { ResetVoice }
                                 textarea = {false} />
-                                {Voice ? <button className=" bg-primary-red-1 flex flex-row-reverse gap-x-3 items-center justify-center text-white w-fit rounded px-3 py-2 mt-4 " onClick={ResetVoice} >بارگدازی مجدد<IoReload/></button> : null }
+                                {Voice ? <button className="btn btn-secondary btn-sm mt-3 w-fit" onClick={ResetVoice} >بارگذاری مجدد<IoReload/></button> : null }
                         </div> : null
                     }
                     {
                         loading ? <Loader /> :
-                            <button onClick={editHandler} className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >ویرایش</button>
+                            <button onClick={editHandler} className="btn btn-primary btn-block btn-block-md-auto" >ویرایش</button>
                     }
                 </form>
                 <Toaster />

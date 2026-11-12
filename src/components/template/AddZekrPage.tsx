@@ -129,11 +129,11 @@ const AddZekrPage = ({years}:any) => {
     }
 
     return (
-        <div className='py-4 px-5'>
+        <div className='p-5 md:p-8'>
             <div>
-                <h1 className="font-bold text-xl" >افزودن ذکر</h1>
+                <h1 className="text-xl font-extrabold md:text-2xl" >افزودن ذکر</h1>
             </div>
-            <form className="flex flex-col gap-y-6 mt-5 " >
+            <form className="form mt-6" >
                     <Input
                         value={ Title }
                         name= "Title"
@@ -148,10 +148,10 @@ const AddZekrPage = ({years}:any) => {
                         label= "شاعر:"
                         type = "text"
                         textarea = {false} />
-                    <div className="flex flex-col gap-y-2 ">
-                        <label>سال:</label>
+                    <div className="field-group">
+                        <label className="field-label">سال</label>
                         <select name="Year" value={Year} onChange={changeHandler}
-                            className="ml-7 drop-shadow-md rounded text-Dark py-2 pr-3 w-full md:w-1/2 bg-secondary-gray  text-text-light focus:outline-none focus:ring-2 focus:ring-primary-red-2 ring-secondary-red-1" >
+                            className="field" >
                             <option value="انتخاب سال">انتخاب سال</option>
                             <hr />
                             {
@@ -198,11 +198,11 @@ const AddZekrPage = ({years}:any) => {
                             Voice={ Voice }
                             ResetVoice = { ResetVoice }
                             textarea = {false} />
-                        {Voice ? <button className=" bg-primary-red-1 flex flex-row-reverse gap-x-3 items-center justify-center text-white w-fit rounded px-3 py-2  " onClick={ResetVoice} >بارگدازی مجدد<IoReload/></button> : null }
+                        {Voice ? <button className="btn btn-secondary btn-sm w-fit" onClick={ResetVoice} >بارگذاری مجدد<IoReload/></button> : null }
 
                     {
                         loading ? <Loader /> :
-                            <button onClick={AddHandler} className=" bg-primary-red-1 text-white rounded md:w-1/2 py-2" >افرودن</button>
+                            <button onClick={AddHandler} className="btn btn-primary btn-block btn-block-md-auto" >افزودن</button>
                     }
                 </form>
                 <Toaster />

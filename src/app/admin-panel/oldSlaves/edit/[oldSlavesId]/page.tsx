@@ -17,20 +17,21 @@ export const metadata: Metadata = {
   keywords: "پنل ادمین, ویرایش پیر غلامان, هیئت سقایی عباسیه جولان, مدیریت پیر غلامان",
 };
 
-const page = async ({ params: { oldSlavesId } }: any) => {
+const page = async ({ params }: any) => {
+  const { oldSlavesId } = await params;
 
 
     await connectDB();
     
     const save  = await Save.findOne({ _id : process.env.SAVE_DATA_BASE_ID })
-    const { OldSlaves } = save
+    const OldSlaves = save?.OldSlaves ?? []
     const oldSlaves = OldSlaves.find((OLD : OLD_SLAVES) => OLD._id == oldSlavesId );
 
     
     if (!oldSlaves) {
         return (
-            <div className="flex items-center justify-center h-[500px]">
-          <h3 className="font-bold text-2xl border-b-4 border-secondary-red-2 py-2">
+            <div className="state">
+          <h3 className="state-title">
             {ERROR.OLD_SLAVES_EXIST}
           </h3>
         </div>
